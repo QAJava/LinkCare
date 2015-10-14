@@ -113,6 +113,12 @@ public abstract class Page {
     return option.getText();
   }
 
+  public void selectValueInDropdownbyText (WebElement dropdown, String value) {
+    Select select = new Select(dropdown);
+    select.selectByVisibleText(value);
+
+  }
+
   public boolean verifyElementIsPresent(WebElement element) {
     try {
       element.getTagName();

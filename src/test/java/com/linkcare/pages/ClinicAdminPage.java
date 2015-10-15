@@ -17,17 +17,67 @@ public class ClinicAdminPage extends Page {
 
     //Sort Buttons
     @FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00']//a[contains(text(),\"מס' קליניקה\")]")
-    WebElement clinicSortButton;
-
-
-
+    WebElement clinicIdSortButton;
 
     @FindBy (xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00']//a[contains(text(),'שם קליניקה')]")
     WebElement clinicNameSortButton;
 
+	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00']//a[contains(text(),\"כתובת הקליניקה\")]")
+	WebElement clinicAddressSortButton;
+
+	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00']//a[contains(text(),\"שם הארגון\")]")
+	WebElement organizationNameSortButton;
+
+    //FilterFields
+	@FindBy(id="ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_id")
+	WebElement clinicIdFilterField;
+
+	@FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_name")
+	WebElement clinicNameFilterField;
+
+    @FindBy(id="ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_address")
+    WebElement clinicAddressFilterField;
+
+    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_org_name")
+    WebElement organizationNameFilterField;
+
+    //FilterButtons
+
+    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_id")
+    WebElement clinicIdFilterButton;
+
+    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_name")
+    WebElement clinicNameFilterButton;
+
+    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_address")
+    WebElement clinicAddressFilterButton;
+
+    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_org_name")
+    WebElement organizationNameFilterButton;
+
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NoFilter')]")
+    private WebElement noFilterButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'Contains')]")
+    private WebElement ContainsButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'StartsWith')]")
+    private WebElement StartsWithButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'EqualTo')]")
+    private WebElement EqualToButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'GreaterThan')]")
+    private WebElement GreaterThanButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'LessThan')]")
+    private WebElement LessThanButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'IsEmpty')]")
+    private WebElement IsEmptyButton;
+    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NotIsEmpty')]")
+    private WebElement NotIsEmptyButton;
+
     //add new clinic
     @FindBy(id = "MainContent_AddNewItem")
     WebElement addNewClinicButton;
+
+    @FindBy(id = "MainContent_ItemLinkButton2")
+    WebElement addNewClinicButton2;
 
     @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicName")
     WebElement clinicNameField;
@@ -41,7 +91,6 @@ public class ClinicAdminPage extends Page {
     @FindBy(id = "ctl00_MainContent_rwAddClinic_C_SaveClinic")
     WebElement proceedButton;
 
-
     @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicPhone")
     WebElement clinicPhoneFiled;
 
@@ -52,18 +101,6 @@ public class ClinicAdminPage extends Page {
 
     @FindBy(id = "selectOrg")
     WebElement selectButton;
-
-
-    @FindBy(id = "MainContent_LoginUser_UserName")
-
-    WebElement usernameField;
-
-    @FindBy(id = "MainContent_LoginUser_Password")
-
-    WebElement passwordField;
-
-    @FindBy(id = "MainContent_LoginUser_LoginButton")
-
 
 
     WebElement signUpButton;
@@ -198,6 +235,10 @@ public class ClinicAdminPage extends Page {
         return exists(invalidPasswordAlert);
     }
 
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_UserName")
+    WebElement usernameField;
 
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_Password")
+    WebElement passwordField;
 
 }

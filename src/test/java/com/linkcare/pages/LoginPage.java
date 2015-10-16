@@ -9,35 +9,28 @@ import java.io.IOException;
 
 /**
  * Created by on 5/19/2015.
+ * Oleg
  */
 public class LoginPage extends Page {
 
 
-
-
-
     @FindBy(id = "MainContent_LoginUser_UserName")
-
     WebElement usernameField;
 
     @FindBy(id = "MainContent_LoginUser_Password")
-
     WebElement passwordField;
 
     @FindBy(id = "MainContent_LoginUser_LoginButton")
-
     WebElement loginButton;
 
-    @FindBy(xpath = "s ")
-
+    @FindBy(id="MainContent_LoginUser_RegisterHyperLink")
     WebElement signUpButton;
-    @FindBy(xpath = "s ")
 
+    @FindBy(xpath = "//*[@class='forgot']")
     WebElement forgotLink;
-    @FindBy(xpath = "s ")
 
-    WebElement invalidPasswordAlert;
-
+    @FindBy(xpath = "//*[@class='failureNotification' and contains(text(),'ניסיון ההתחברות שלך לא הצליח. אנא נסה שוב')]")
+    WebElement failureNotificationAlert;
 
     @FindBy(xpath = "s")
     WebElement invalidEmailAlert;
@@ -77,9 +70,9 @@ public class LoginPage extends Page {
         }return this;
     }
 
-    public LoginPage waitUntilAllertPasswordIsLogIsLoaded() {
+    public LoginPage waitUntilAllertFailureNotificationIsLoaded() {
         try {
-            waitUntilElementIsLoaded(invalidPasswordAlert);
+            waitUntilElementIsLoaded(failureNotificationAlert);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -114,6 +107,11 @@ public class LoginPage extends Page {
         return this;
     }
 
+    public LoginPage clickOnForgotLink() {
+        clickElement(forgotLink);
+        return this;
+    }
+
     public LoginPage login(String email, String password) {
         //openLoginPage();
         waitUntilLoginPageIsLoaded();
@@ -132,8 +130,8 @@ public class LoginPage extends Page {
         return exists(invalidEmailAlert);
     }
 
-    public boolean alertMessageInvalidPassword() {
-        return exists(invalidPasswordAlert);
+    public boolean alertMessageFailureNotification() {
+        return exists(failureNotificationAlert);
     }
 
 

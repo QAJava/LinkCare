@@ -35,6 +35,20 @@ public class ClinicManagement extends Page {
     WebElement organizationFiledIconButton;
     @FindBy(xpath = ".//*[@id='ctl00_MainContent_RCB_organization_EmbeddedTree']")
     WebElement organizationsList;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbClinics_Input']")
+    WebElement clinicsInputFiled;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbClinics_Arrow']")
+    WebElement clinicsArrowButton;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbClinics_DropDown']")
+    WebElement clinicInputsDropDown;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbSubRoles_Input']")
+    WebElement subRolesInputField ;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbSubRoles_Arrow']")
+    WebElement subRolesArrowbutton;
+    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbSubRoles_DropDown']")
+    WebElement subRolesDropDown;
+    @FindBy(xpath = ".//*[@id='MainContent_search']")
+    WebElement searchButton;
 
 
 

@@ -5,7 +5,6 @@ package com.linkcare.pages.doctor;
  */
 
 import com.linkcare.pages.Page;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +20,7 @@ public class UsersDoctorPage extends Page {
 	WebElement usersUserNameSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"שם הארגון\")]")
-	WebElement usersOrganizationNameSortButton;
+	WebElement usersOrgNameSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"תפקיד\")]")
 	WebElement usersRoleSortButton;
@@ -72,7 +71,7 @@ public class UsersDoctorPage extends Page {
     //FilterButtons
 
 	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_UserName")
-	private WebElement usersUserNameFilterButton;
+	WebElement usersUserNameFilterButton;
 
     @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_OrgName")
     WebElement usersOrgNameFilterButton;
@@ -96,6 +95,14 @@ public class UsersDoctorPage extends Page {
     WebElement usersPhoneFilterButton;
 
 
+    // Allert <אין רשומות להצגה>
+
+	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//div[contains(text(),\"אין רשומות להצגה\")]")
+	WebElement usersNoRecords;
+
+
+
+
 
 
 
@@ -114,10 +121,10 @@ public class UsersDoctorPage extends Page {
         driver.get(PAGE_URL);
         return this;
     }
-///
-    public UsersDoctorPage waitUntilUsersDoctorPageIsLoaded() {
+
+        public UsersDoctorPage waitUntilUsersDoctorPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(usersPhoneFilterButton);
+            waitUntilElementIsLoaded(usersUserNameSortButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -125,16 +132,121 @@ public class UsersDoctorPage extends Page {
         }
         return this;
     }
+
+// clicking on SortButtons
+
+    public UsersDoctorPage clickOnUsersUserNameFilterButton() {
+        clickElement(usersUserNameFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersOrgNameFilterButton() {
+        clickElement(usersOrgNameFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersRoleFilterButton() {
+        clickElement(usersRoleFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersSubRoleFilterButton() {
+        clickElement(usersSubRoleFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersNameFilterButton() {
+        clickElement(usersNameFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersIDFilterButton() {
+        clickElement(usersIDFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersEmailFilterButton() {
+        clickElement(usersEmailFilterButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersPhoneFilterButton() {
+        clickElement(usersPhoneFilterButton);
+        return this;
+    }
+
+
+    // clicking on FilterButtons
+
+    public UsersDoctorPage clickOnUsersUserNameSortButton() {
+        clickElement(usersUserNameSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersOrgNameSortButton() {
+        clickElement(usersOrgNameSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersRoleSortButton() {
+        clickElement(usersRoleSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersSubRoleSortButton() {
+        clickElement(usersSubRoleSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersNameSortButton() {
+        clickElement(usersNameSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersIDSortButton() {
+        clickElement(usersIDSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersEmailSortButton() {
+        clickElement(usersEmailSortButton);
+        return this;
+    }
+
+    public UsersDoctorPage clickOnUsersPhoneSortButton() {
+        clickElement(usersPhoneSortButton);
+        return this;
+    }
+
+
+    // filling filterTextBoxes
+
+    public UsersDoctorPage fillUsersUserNameFilterTextBox(String text) {
+        setElementText(usersNameFilterTextBox, text);
+        return this;
+    }
+
+
+
+
+
+    public boolean isOnUsersDoctorPage() {
+        return exists(usersNameFilterTextBox);
+    }
+
+    public boolean allertMessageNoRecords() {
+        return exists(usersNoRecords);
+    }
+
+
+
+
+
 /*
     public UsersDoctorPage chooseOrganization(String name) {
 
         WebElement element = driver.findElement(By.xpath("//*[@id='TreeView1']//span[contains(text(),'" + name + "')]"));
         element.click();
-        return this;
-    }
-
-    public UsersDoctorPage clickToSelectOrg() {
-        clickElement(selectButton);
         return this;
     }
 

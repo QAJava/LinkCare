@@ -30,120 +30,81 @@ public class UsersDoctorPage extends Page {
 	WebElement usersSubRoleSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"שם\")]")
-	private WebElement usersNameSortButton;
+	WebElement usersNameSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"מספר זהות\")]")
-	private WebElement usersIDSortButton;
+	WebElement usersIDSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"מייל\")]")
-	private WebElement usersMailSortButton;
+	WebElement usersEmailSortButton;
 
 	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),\"טלפון\")]")
-	private WebElement usersPhoneSortButton;
+	WebElement usersPhoneSortButton;
 
 
+    //FilterTextBoxes
 
-//*[@id='ctl00_MainContent_RadGrid3_ctl00']//a[contains(text(),"טלפון")]
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_UserName")
+	WebElement usersUserNameFilterTextBox;
 
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_OrgName")
+	WebElement usersOrgNameFilterTextBox;
 
-/*
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_RoleName")
+	WebElement usersRoleFilterTextBox;
 
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_SubRoleName")
+	WebElement usersSubRoleFilterTextBox;
 
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_DisplayName")
+	WebElement usersNameFilterTextBox;
 
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_PersonalId")
+	WebElement usersIDFilterTextBox;
 
-    //FilterFields
-	@FindBy(id="ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_id")
-	WebElement clinicIdFilterField;
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_Email")
+	WebElement usersEmailFilterTextBox;
 
-	@FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_name")
-	WebElement clinicNameFilterField;
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_PhoneNumber")
+	WebElement usersPhoneFilterTextBox;
 
-    @FindBy(id="ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_clinic_address")
-    WebElement clinicAddressFilterField;
-
-    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_FilterTextBox_org_name")
-    WebElement organizationNameFilterField;
 
     //FilterButtons
 
-    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_id")
-    WebElement clinicIdFilterButton;
+	@FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_UserName")
+	private WebElement usersUserNameFilterButton;
 
-    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_name")
-    WebElement clinicNameFilterButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_OrgName")
+    WebElement usersOrgNameFilterButton;
 
-    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_clinic_address")
-    WebElement clinicAddressFilterButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_RoleName")
+    WebElement usersRoleFilterButton;
 
-    @FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl02_ctl02_Filter_org_name")
-    WebElement organizationNameFilterButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_SubRoleName")
+    WebElement usersSubRoleFilterButton;
 
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NoFilter')]")
-    private WebElement noFilterButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'Contains')]")
-    private WebElement ContainsButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'StartsWith')]")
-    private WebElement StartsWithButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'EqualTo')]")
-    private WebElement EqualToButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'GreaterThan')]")
-    private WebElement GreaterThanButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'LessThan')]")
-    private WebElement LessThanButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'IsEmpty')]")
-    private WebElement IsEmptyButton;
-    @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NotIsEmpty')]")
-    private WebElement NotIsEmptyButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_DisplayName")
+    WebElement usersNameFilterButton;
 
-    //add new clinic
-    @FindBy(id = "MainContent_AddNewItem")
-    WebElement addNewClinicButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_PersonalId")
+    WebElement usersIDFilterButton;
 
-    @FindBy(id = "MainContent_ItemLinkButton2")
-    WebElement addNewClinicButton2;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_Email")
+    WebElement usersEmailFilterButton;
 
-    @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicName")
-    WebElement clinicNameField;
-
-    @FindBy(id = "ctl00_MainContent_rwAddClinic_C_TB_OrgName")
-    WebElement organizationName;
-
-    @FindBy(xpath = "//*[@id='ctl00_MainContent_rwAddClinic_C']//tr[2]/td[2]/input[2]")
-    WebElement chooseOrgButton;
-
-    @FindBy(id = "ctl00_MainContent_rwAddClinic_C_SaveClinic")
-    WebElement proceedButton;
-
-    @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicPhone")
-    WebElement clinicPhoneFiled;
-
-    @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicAddress")
-    WebElement clinicAddressFiled;
-
-    //add new clinic dialog window
-
-    @FindBy(id = "selectOrg")
-    WebElement selectButton;
+    @FindBy(id = "ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_Filter_PhoneNumber")
+    WebElement usersPhoneFilterButton;
 
 
-    WebElement signUpButton;
-    @FindBy(xpath = "s ")
-
-    WebElement forgotLink;
-    @FindBy(xpath = "s ")
-
-    WebElement invalidPasswordAlert;
 
 
-    @FindBy(xpath = "s")
-    WebElement invalidEmailAlert;
-*/
+
     public UsersDoctorPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Users.aspx";
         PageFactory.initElements(driver, this);
     }
-/*
+
     public UsersDoctorPage openUsersDoctorPage(WebDriver driver) {
         driver.get(PAGE_URL);
         return this;
@@ -154,9 +115,9 @@ public class UsersDoctorPage extends Page {
         return this;
     }
 ///
-    public UsersDoctorPage waitUntilusersDoctorPageIsLoaded() {
+    public UsersDoctorPage waitUntilUsersDoctorPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(usernameField);
+            waitUntilElementIsLoaded(usersPhoneFilterButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -164,7 +125,7 @@ public class UsersDoctorPage extends Page {
         }
         return this;
     }
-
+/*
     public UsersDoctorPage chooseOrganization(String name) {
 
         WebElement element = driver.findElement(By.xpath("//*[@id='TreeView1']//span[contains(text(),'" + name + "')]"));

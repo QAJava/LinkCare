@@ -15,10 +15,12 @@ import java.io.IOException;
 
 
 
-public class ClinicManagement extends Page {
+public class ClinicManagementPage extends Page {
 
    @FindBy(xpath = ".//*[@class='rmText'][contains(text(),'ניהול קליניקה')]")
     WebElement clinicManagementButton;
+
+ //Edit Details of Clinic.
     @FindBy(xpath = ".//*[@class='rtsTxt'][contains(text(),'עריכת פרטי הקליניקה')]")
     WebElement clinicEditInformationButton;
     @FindBy(xpath = ".//*[@id='MainContent_txtClinicName']")
@@ -27,6 +29,7 @@ public class ClinicManagement extends Page {
     WebElement clinicPhoneFiled;
     @FindBy(xpath = ".//*[@id='MainContent_txtClinicAddress']")
     WebElement clinicAddressFiled;
+ //Permissions questionnaires.
     @FindBy(xpath = ".//*[@class='rtsTxt'][contains(text(),'הרשאות לשאלונים')]")
     WebElement optionalQuestionnaireButton;
     @FindBy(xpath = ".//*[@id='ctl00_MainContent_RCB_organization']")
@@ -39,8 +42,8 @@ public class ClinicManagement extends Page {
     WebElement clinicsInputFiled;
     @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbClinics_Arrow']")
     WebElement clinicsArrowButton;
-    @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbClinics_DropDown']")
-    WebElement clinicInputsDropDown;
+    @FindBy(xpath = ".//li[contains(text(),'macabi')]")
+    WebElement clinicTypeDropDownList;                  //(macabi)
     @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbSubRoles_Input']")
     WebElement subRolesInputField ;
     @FindBy(xpath = ".//*[@id='ctl00_MainContent_rcbSubRoles_Arrow']")
@@ -49,11 +52,16 @@ public class ClinicManagement extends Page {
     WebElement subRolesDropDown;
     @FindBy(xpath = ".//*[@id='MainContent_search']")
     WebElement searchButton;
+    @FindBy(xpath = ".//*[contains(text(),'שם שאלון')]")
+    WebElement questionaireNameButton;
+    @FindBy(xpath = ".//*[@ class='rgSortAsc']")
+    WebElement sortButton;
 
 
 
 
-    public ClinicManagement(WebDriver driver) {
+
+    public ClinicManagementPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Accounts.aspx";
         PageFactory.initElements(driver, this);

@@ -107,7 +107,7 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public LoginPage clickOnForgotLink() {
+    public LoginPage clickOnForgotPasswordLink() {
         clickElement(forgotLink);
         return this;
     }
@@ -118,11 +118,6 @@ public class LoginPage extends Page {
         fillEmailField(email);
         fillPasswordField(password);
         clickOnLogin();
-        return this;
-    }
-
-    public LoginPage clickOnForgotPasswordLink(){
-        clickElement(forgotLink);
         return this;
     }
 

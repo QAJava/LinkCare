@@ -40,6 +40,10 @@ public class ForgotPasswordPage extends Page {
         }return this;
     }
 
+    public boolean isOnForgotPassPage() {
+        return exists(usernameField);
+    }
+
     public ForgotPasswordPage fillUsernameField(String username) {
         setElementText(usernameField, username);
         return this;

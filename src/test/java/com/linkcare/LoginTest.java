@@ -1,5 +1,6 @@
 package com.linkcare;
 
+import com.linkcare.pages.ForgotPasswordPage;
 import com.linkcare.pages.LoginPage;
 import com.linkcare.pages.MainPage;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public WebDriver driver;
 
     public LoginPage loginPage;
     public MainPage mainPage;
+    public ForgotPasswordPage forgotPasswordPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -62,29 +64,38 @@ public WebDriver driver;
     public void LoginLogoutLogin() {
 
         try {
-        loginPage
-                .fillEmailField(USER)
-                .fillPasswordField(PASSWORD)
-                .clickOnLogin();
-        mainPage.waitUntilMainPageIsLoaded();
-        mainPage.logOut();
-        loginPage
-                .waitUntilLoginPageIsLoaded()
-                .fillEmailField(USER)
-                .fillPasswordField(PASSWORD)
-                .clickOnLogin();
-        mainPage.waitUntilMainPageIsLoaded();
-        assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-        mainPage.logOut();
+            loginPage
+                    .fillEmailField(USER)
+                    .fillPasswordField(PASSWORD)
+                    .clickOnLogin();
+            mainPage.waitUntilMainPageIsLoaded();
+            mainPage.logOut();
+            loginPage
+                    .waitUntilLoginPageIsLoaded()
+                    .fillEmailField(USER)
+                    .fillPasswordField(PASSWORD)
+                    .clickOnLogin();
+            mainPage.waitUntilMainPageIsLoaded();
+            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            mainPage.logOut();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-      //  Reporter.log("Login successful");
     }
+
+    @Test(groups = {"smoke", "positive"})
+        public void ForgotPassLink() {
+            try {
+                loginPage
+                        .clickOnForgotPasswordLink();
+                forgotPasswordPage.waitUntilForgotPasswordPageIsLoaded();
+                assertTrue("The Reset Password Page doesn't open", forgotPasswordPage.isOnForgotPassPage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     @AfterTest(alwaysRun = true)
     public void tearDown() {

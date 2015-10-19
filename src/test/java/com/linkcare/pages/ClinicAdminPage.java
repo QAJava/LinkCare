@@ -56,21 +56,21 @@ public class ClinicAdminPage extends Page {
     WebElement organizationNameFilterButton;
 
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NoFilter')]")
-    private WebElement noFilterButton;
+    WebElement noFilterButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'Contains')]")
-    private WebElement ContainsButton;
+    WebElement containsButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'StartsWith')]")
-    private WebElement StartsWithButton;
+    WebElement startsWithButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'EqualTo')]")
-    private WebElement EqualToButton;
+    WebElement equalToButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'GreaterThan')]")
-    private WebElement GreaterThanButton;
+    WebElement greaterThanButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'LessThan')]")
-    private WebElement LessThanButton;
+    WebElement lessThanButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'IsEmpty')]")
-    private WebElement IsEmptyButton;
+    WebElement isEmptyButton;
     @FindBy(xpath = "//div[@id='ctl00_MainContent_RadGrid1_rfltMenu_detached']//li//*[contains(text(),'NotIsEmpty')]")
-    private WebElement NotIsEmptyButton;
+    WebElement notIsEmptyButton;
 
     //add new clinic
     @FindBy(id = "MainContent_AddNewItem")
@@ -97,43 +97,109 @@ public class ClinicAdminPage extends Page {
     @FindBy(id = "ctl00_MainContent_rwAddClinic_C_tbClinicAddress")
     WebElement clinicAddressFiled;
 
-    //add new clinic dialog window
-
+   //choose organization type dialog window
     @FindBy(id = "selectOrg")
     WebElement selectButton;
 
+    @FindBy(xpath = "//*[@id='TreeView1']//span[contains(text(),\"רופאים פרטיים\")]")
+    WebElement privateDoctorsButton;
 
-    WebElement signUpButton;
-    @FindBy(xpath = "s ")
+    @FindBy(xpath = "//*[@id='TreeView1']//span[contains(text(),\"קופת חולים כללית\")]")
+    WebElement publicClinicButton;
+    //end
 
-    WebElement forgotLink;
-    @FindBy(xpath = "s ")
+    @FindBy(xpath = "//*[@id='form1']//div[2]/input[5]")
+    WebElement chooseManagerOrgButton;
 
-    WebElement invalidPasswordAlert;
+    @FindBy(xpath = "//*[@id='form1']//div[2]/input[7]")
+    WebElement chooseOrgButton2;
+
+	@FindBy(id ="MainContent_SaveData")
+	WebElement saveButton;
+
+    @FindBy(id = "MainContent_tbClinicAdminName")
+    WebElement managerName;
+
+    @FindBy(id = "MainContent_TB_OrgName")
+    WebElement organizationName2;
+
+//create user-manager dialog window
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_UserName")
+    WebElement usernameField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_Email")
+    WebElement emailField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_Password")
+    WebElement passwordField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ConfirmPassword")
+    WebElement confirmPassField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_firstNameTxt")
+    WebElement firstNameField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_lastNameTxt")
+    WebElement lastNameField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_PersonalIdTxt")
+    WebElement teudatField;
+
+    @FindBy(id = "ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_dateInput")
+    WebElement birthDateField ;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ContactCellTxt")
+    WebElement mobilePhoneField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ContactPhoneTxt")
+    WebElement phoneField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_AddressTxt")
+    WebElement streetNameField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_HouseNumberTxt")
+    WebElement houseNumberField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_CityTxt")
+    WebElement cityField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_StateTxt")
+    WebElement stateField;
+
+    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_CountryTxt")
+    WebElement countryField;
+
+	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ZipCodeTxt'")
+	WebElement zipCodeField;
+
+	@FindBy(id = "MainContent_AddNewUser")
+	WebElement addNewUserButton;
+
+	@FindBy(id = "MainContent_cancel")
+	WebElement cancelButton;
+    //end
 
 
-    @FindBy(xpath = "s")
-    WebElement invalidEmailAlert;
 
     public ClinicAdminPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/Login.aspx";
+        this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/clinics.aspx";
         PageFactory.initElements(driver, this);
     }
 
-    public ClinicAdminPage opennLoginPage(WebDriver driver) {
+    public ClinicAdminPage openClinicPage(WebDriver driver) {
         driver.get(PAGE_URL);
         return this;
     }
 
-    public ClinicAdminPage openLoginPage(WebDriver driver, String baseUrl) {
+    public ClinicAdminPage openClinicPage(WebDriver driver, String baseUrl) {
         driver.get(PAGE_URL);
         return this;
     }
 
-    public ClinicAdminPage waitUntilLoginPageIsLoaded() {
+    public ClinicAdminPage waitUntilClinicPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(usernameField);
+            waitUntilElementIsLoaded(clinicIdSortButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -141,6 +207,106 @@ public class ClinicAdminPage extends Page {
         }
         return this;
     }
+
+    //click sortbuttons
+      public ClinicAdminPage clickToSortById() {
+        clickElement(clinicIdSortButton);
+        return this;
+    }
+    public ClinicAdminPage clickToSortByName() {
+        clickElement(clinicNameSortButton);
+        return this;
+    }
+    public ClinicAdminPage clickToSortByAddress() {
+        clickElement(clinicAddressSortButton);
+        return this;
+    }
+    public ClinicAdminPage clickToSortByOrgName() {
+        clickElement(organizationNameSortButton);
+        return this;
+    }
+    //fill filter fields
+    public ClinicAdminPage fillIdFilterField(String text) {
+    setElementText(clinicIdFilterField, text);
+    return this;
+}
+    public ClinicAdminPage fillNameFilterField(String text) {
+        setElementText(clinicNameFilterField, text);
+        return this;
+    }
+    public ClinicAdminPage fillAddressFilterField(String text) {
+        setElementText(clinicAddressFilterField, text);
+        return this;
+    }
+    public ClinicAdminPage fillOrgNameFilterField(String text) {
+        setElementText(organizationNameFilterField, text);
+        return this;
+    }
+
+    //click filter buttons
+    public ClinicAdminPage clickIdFilterButton(){
+        clickElement(clinicIdFilterButton);
+        return this;
+    }
+    public ClinicAdminPage clickNameFilterButton(){
+        clickElement(clinicNameFilterButton);
+        return this;
+    }
+    public ClinicAdminPage clickAddressFilterButton(){
+        clickElement(clinicAddressFilterButton);
+        return this;
+    }
+    public ClinicAdminPage clickOrgNameFilterButton(){
+        clickElement(organizationNameFilterButton);
+        return this;
+    }
+    //choose filter buttons
+    public ClinicAdminPage chooseNoFilterButton(){
+        clickElement(noFilterButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseContainsFilterButton(){
+        clickElement(containsButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseStartsWithFilterButton(){
+        clickElement(startsWithButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseEqualsToFilterButton(){
+        clickElement(equalToButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseGreaterThanFilterButton(){
+        clickElement(greaterThanButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseLessThanButton(){
+        clickElement(lessThanButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseIsEmptyFilterButton(){
+        clickElement(isEmptyButton);
+        return  this;
+    }
+    public ClinicAdminPage chooseNotIsEmptyFilterButton(){
+        clickElement(notIsEmptyButton);
+        return  this;
+    }
+
+    //dinamic elements
+	@FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00__0']/td[1]")
+	WebElement clinicaIdFirstRow;
+
+    @FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00__0']/td[1]")
+    WebElement clinicaIdSecondRow;
+
+    public ClinicAdminPage chooseClinicIdRow (String row) {
+
+    WebElement element = driver.findElement(By.xpath("//*[@id='ctl00_MainContent_RadGrid1_ctl00__" + row + "']/td[1]"));
+    return this;
+    }
+
 
     public ClinicAdminPage chooseOrganization(String name) {
 
@@ -174,71 +340,19 @@ public class ClinicAdminPage extends Page {
         return this;
     }
 
-    public ClinicAdminPage waitUntilAllertEmailIsLogIsLoaded() {
-        try {
-            waitUntilElementIsLoaded(invalidEmailAlert);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
-
-    public ClinicAdminPage waitUntilAllertPasswordIsLogIsLoaded() {
-        try {
-            waitUntilElementIsLoaded(invalidPasswordAlert);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
-
-    public boolean isOnLoginPage() {
-        waitUntilLoginPageIsLoaded();
-        return exists(usernameField);
+    public boolean isOnClinicPage() {
+        waitUntilClinicPageIsLoaded();
+        return exists(clinicIdSortButton);
     }
 
     public ClinicAdminPage fillEmailField(String email) {
         setElementText(usernameField, email);
-
         return this;
     }
 
     public ClinicAdminPage fillPasswordField(String password) {
         setElementText(passwordField, password);
-
         return this;
     }
-
-
-
-    public ClinicAdminPage clickOnSignUpButton() {
-        clickElement(signUpButton);
-        return this;
-    }
-
-
-
-    public ClinicAdminPage clickOnForgotPasswordLink() {
-        clickElement(forgotLink);
-        return this;
-    }
-
-    public boolean alertMessageInvalidEmail() {
-        return exists(invalidEmailAlert);
-    }
-
-    public boolean alertMessageInvalidPassword() {
-        return exists(invalidPasswordAlert);
-    }
-
-    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_UserName")
-    WebElement usernameField;
-
-    @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_Password")
-    WebElement passwordField;
 
 }

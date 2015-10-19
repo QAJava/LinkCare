@@ -18,6 +18,9 @@ public class ForgotPasswordPage extends Page {
     @FindBy(id = "MainContent_PasswordRecovery_UserNameContainerID_SubmitButton")
     WebElement restoreButton;
 
+    @FindBy(xpath = "//*[@id='MainContent_PasswordRecovery' and contains(.,'לא הצלחנו לגשת למידע שלך. אנא נסה שוב')]")
+    WebElement failureNotificationAlert;
+
 
     public ForgotPasswordPage(WebDriver driver) {
         super(driver);
@@ -42,6 +45,10 @@ public class ForgotPasswordPage extends Page {
 
     public boolean isOnForgotPassPage() {
         return exists(usernameField);
+    }
+
+    public boolean isFailureNotificationAlert() {
+        return exists(failureNotificationAlert);
     }
 
     public ForgotPasswordPage fillUsernameField(String username) {

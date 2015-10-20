@@ -35,6 +35,8 @@ public class LoginPage extends Page {
     @FindBy(xpath = "s")
     WebElement invalidEmailAlert;
 
+
+
     public LoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/Login.aspx";
@@ -112,10 +114,10 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public LoginPage login(String email, String password) {
+    public LoginPage login(String loginName, String password) {
         //openLoginPage();
         waitUntilLoginPageIsLoaded();
-        fillEmailField(email);
+        fillEmailField(loginName);
         fillPasswordField(password);
         clickOnLogin();
         return this;

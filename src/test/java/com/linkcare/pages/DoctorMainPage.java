@@ -1,17 +1,16 @@
-package com.linkcare.pages.doctor;
+package com.linkcare.pages;
 
-import com.linkcare.pages.Page;
+/**
+ * Created by Christina on 28/05/2015.
+ */
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.IOException;
 
-/**
- * Created by Christina on 5/19/2015.
- */
-public class PatientsPage extends Page {
+public class DoctorMainPage extends Page {
 
 
     @FindBy(id = "MainContent_LoginUser_UserName")
@@ -19,7 +18,7 @@ public class PatientsPage extends Page {
 
     //For Patients Active
     @FindBy(xpath="//*[@id='ctl00_MainContent_RadTabStrip1']//span[contains(text(),'מטופלים פעילים')]")
-    WebElement patientsActive;
+    WebElement tabPatientsActive;
     @FindBy(xpath="//*[@id='MainContent_RadPageView1']//h2")
     WebElement listOfPatients;
     @FindBy(xpath="//*[@id='MainContent_RadPageView1']//div[@class='searchArea']/label")
@@ -44,8 +43,8 @@ public class PatientsPage extends Page {
     WebElement addRightSide;
 
     //For Patients Today
-    @FindBy(xpath="//*[@id='ctl00_MainContent_RadTabStrip1']//span[contains(text(),'מטופלים להיום')]']")
-    WebElement patientsToday;
+    @FindBy(xpath="//*[@id='ctl00_MainContent_RadTabStrip1']//span[contains(text(),'מטופלים להיום')]")
+    WebElement tabPatientsToday;
     @FindBy(xpath="//*[@id='MainContent_ctl01']//h2 ']")
     WebElement listOfPatientsToday;
     @FindBy(xpath="//*[@id='ctl00_MainContent_RadGrid2_ctl00_ctl02_ctl02_FilterTextBox_FirstName']")
@@ -69,32 +68,78 @@ public class PatientsPage extends Page {
     @FindBy(xpath="//*[@id='ctl00_MainContent_RadGrid3_ctl00_ctl02_ctl02_FilterTextBox_PersonalId']")
     WebElement fieldOfFilterPersonalIDSearchPatients;
 
+    //Buttons
+
+    @FindBy(xpath = "//*[@id='Top1_HeadLoginView_HeadLoginStatus']")
+    WebElement logOutButton;
 
 
-    //constructor
-    public PatientsPage(WebDriver driver) {
+
+    public DoctorMainPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Accounts.aspx";
         PageFactory.initElements(driver, this);
+        this.PAGE_URL = baseUrl + "/home";
+
     }
 
-    public PatientsPage openPatientsPageDriver(WebDriver driver) {
-        driver.get(PAGE_URL);
-        return this;
-    }
-    public PatientsPage openPatientsPage(WebDriver driver, String baseUrl) {
-        driver.get(PAGE_URL);
+    public DoctorMainPage openMainPage(WebDriver driver, String baseUrl) {
+        driver.get("http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Tabs.aspx");
         return this;
     }
 
-    public PatientsPage waitUntilPatientsPageIsLoaded() {
-        try {
-            waitUntilElementIsLoaded(userNameField);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }return this;
+
+
+    // Waits until title of our 'What works' Panel appears on the screen
+    public DoctorMainPage waitUntilMainPageIsLoaded() {
+        waitUntilIsLoaded(logOutButton);
+        return this;
+    }
+
+
+    public DoctorMainPage clickToSelectPatientsActive() {
+        clickElement(tabPatientsActive);
+        return this;
+    }
+
+    public DoctorMainPage clickToSelectPatientsToday() {
+        clickElement(tabPatientsToday);
+        return this;
+    }
+
+    public DoctorMainPage clickToSelectSearchPatients() {
+        clickElement(tabSearchPatients);
+        return this;
+    }
+
+    public boolean isOnMainPage() {
+
+        waitUntilMainPageIsLoaded();
+        return exists(logOutButton);
+    }
+
+   /* public DoctorMainPage openPatientsTab (){
+    clickElement(patientTab);
+    return this;
+    }
+
+    public DoctorMainPage openSearchPatientsTab (){
+        clickElement(searchPatients);
+        return this;
+    }
+
+    public DoctorMainPage filterPatientsByFirstName (String name) {
+        setElementText(firstNameFilterInputField,name);
+        return this;
+    }
+*/
+    public boolean isLoggedIn() {
+
+        return exists(logOutButton);
+    }
+
+    public DoctorMainPage logOut() {
+        clickElement(logOutButton);
+        return this;
     }
 
 

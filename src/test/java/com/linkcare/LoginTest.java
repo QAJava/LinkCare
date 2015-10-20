@@ -2,7 +2,7 @@ package com.linkcare;
 
 import com.linkcare.pages.ForgotPasswordPage;
 import com.linkcare.pages.LoginPage;
-import com.linkcare.pages.MainPage;
+import com.linkcare.pages.DoctorMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -23,14 +23,14 @@ public class LoginTest {
 public WebDriver driver;
 
     public LoginPage loginPage;
-    public MainPage mainPage;
+    public DoctorMainPage mainPage;
     public ForgotPasswordPage forgotPasswordPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         driver = new FirefoxDriver();
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage = PageFactory.initElements(driver, DoctorMainPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)

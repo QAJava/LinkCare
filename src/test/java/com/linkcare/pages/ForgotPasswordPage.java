@@ -24,14 +24,10 @@ public class ForgotPasswordPage extends Page {
 
     public ForgotPasswordPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/login.aspx?ReturnUrl=%2fLogin.aspx";
+        this.PAGE_URL = "";
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
-    public ForgotPasswordPage openForgotPasswordPage(WebDriver driver) {
-        driver.get(PAGE_URL);
-        return this;
-    }
 
     public ForgotPasswordPage waitUntilForgotPasswordPageIsLoaded() {
         try {

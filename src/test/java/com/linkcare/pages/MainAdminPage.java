@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class MainPageAdmin extends Page {
+public class MainAdminPage extends Page {
 
 	@FindBy(xpath = "//*[@id='ctl00_DisplayImportantLinks1_myMenu']//a[@class='rmLink rmRootLink rootItems selected']")
 	 WebElement patientTab;
@@ -35,14 +35,14 @@ public class MainPageAdmin extends Page {
 
 
 
-    public MainPageAdmin(WebDriver driver) {
+    public MainAdminPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = baseUrl + "/home";
 
     }
 
-    public MainPageAdmin openMainPage(WebDriver driver, String baseUrl) {
+    public MainAdminPage openMainPage(WebDriver driver, String baseUrl) {
         driver.get("http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Tabs.aspx");
         return this;
     }
@@ -50,7 +50,7 @@ public class MainPageAdmin extends Page {
 
 
     // Waits until title of our 'What works' Panel appears on the screen
-    public MainPageAdmin waitUntilMainPageIsLoaded() {
+    public MainAdminPage waitUntilMainPageIsLoaded() {
         waitUntilIsLoaded(logOutButton);
         return this;
     }
@@ -62,17 +62,17 @@ public class MainPageAdmin extends Page {
         return exists(logOutButton);
     }
 
-public MainPageAdmin openPatientsTab (){
+public MainAdminPage openPatientsTab (){
     clickElement(patientTab);
     return this;
 }
 
-    public MainPageAdmin openSearchPatientsTab (){
+    public MainAdminPage openSearchPatientsTab (){
         clickElement(searchPatients);
         return this;
     }
 
-    public MainPageAdmin filterPatientsByFirstName (String name) {
+    public MainAdminPage filterPatientsByFirstName (String name) {
         setElementText(firstNameFilterInputField,name);
         return this;
     }
@@ -82,7 +82,7 @@ public MainPageAdmin openPatientsTab (){
         return exists(logOutButton);
     }
 
-    public MainPageAdmin logOut() {
+    public MainAdminPage logOut() {
         clickElement(logOutButton);
         return this;
     }

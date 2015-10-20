@@ -5,12 +5,15 @@ package com.linkcare.pages;
  */
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class ClinicAdminPage extends Page {
@@ -169,7 +172,7 @@ public class ClinicAdminPage extends Page {
     @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_CountryTxt")
     WebElement countryField;
 
-	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ZipCodeTxt'")
+	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ZipCodeTxt")
 	WebElement zipCodeField;
 
 	@FindBy(id = "MainContent_AddNewUser")
@@ -301,10 +304,29 @@ public class ClinicAdminPage extends Page {
     @FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00__0']/td[1]")
     WebElement clinicaIdSecondRow;
 
+    @FindBy(xpath = "//*[@id='ctl00_MainContent_RadGrid1_ctl00']/tbody")
+    WebElement filteredTable;
+
+    //*[@id='ctl00_MainContent_RadGrid1_ctl00']/tbody
     public ClinicAdminPage chooseClinicIdRow (String row) {
 
     WebElement element = driver.findElement(By.xpath("//*[@id='ctl00_MainContent_RadGrid1_ctl00__" + row + "']/td[1]"));
     return this;
+    }
+
+    public ClinicAdminPage checkClinicNameFilter (String filterText) {
+        fillNameFilterField (filterText);
+        clinicNameField.sendKeys(Keys.ENTER);
+        waitUntilIsLoaded(filteredTable);
+        List<WebElement> rows = filteredTable.findElements(By.tagName("tr"));
+        java.util.Iterator<WebElement> i = rows.iterator();
+        while(i.hasNext()) {
+            WebElement row = i.next();
+            WebElement clinicName = (WebElement) row.findElements(By.xpath("/td[2]"));
+            String clinicText = clinicName.getText();
+            Assert.assertEquals(clinicText.substring(0, 1),"a","Not all Clinic Names, for example " +clinicText+ " begins with " +filterText+"");
+        }
+        return this;
     }
 
 

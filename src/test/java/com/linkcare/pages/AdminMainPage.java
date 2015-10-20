@@ -10,8 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-
-public class MainPage extends Page {
+public class AdminMainPage extends Page {
 
 	@FindBy(xpath = "//*[@id='ctl00_DisplayImportantLinks1_myMenu']//a[@class='rmLink rmRootLink rootItems selected']")
 	 WebElement patientTab;
@@ -36,14 +35,14 @@ public class MainPage extends Page {
 
 
 
-    public MainPage(WebDriver driver) {
+    public AdminMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = baseUrl + "/home";
 
     }
 
-    public MainPage openMainPage(WebDriver driver, String baseUrl) {
+    public AdminMainPage openMainPage(WebDriver driver, String baseUrl) {
         driver.get("http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Tabs.aspx");
         return this;
     }
@@ -51,7 +50,7 @@ public class MainPage extends Page {
 
 
     // Waits until title of our 'What works' Panel appears on the screen
-    public MainPage waitUntilMainPageIsLoaded() {
+    public AdminMainPage waitUntilMainPageIsLoaded() {
         waitUntilIsLoaded(logOutButton);
         return this;
     }
@@ -63,17 +62,17 @@ public class MainPage extends Page {
         return exists(logOutButton);
     }
 
-public MainPage openPatientsTab (){
+public AdminMainPage openPatientsTab (){
     clickElement(patientTab);
     return this;
 }
 
-    public MainPage openSearchPatientsTab (){
+    public AdminMainPage openSearchPatientsTab (){
         clickElement(searchPatients);
         return this;
     }
 
-    public MainPage filterPatientsByFirstName (String name) {
+    public AdminMainPage filterPatientsByFirstName (String name) {
         setElementText(firstNameFilterInputField,name);
         return this;
     }
@@ -83,7 +82,7 @@ public MainPage openPatientsTab (){
         return exists(logOutButton);
     }
 
-    public MainPage logOut() {
+    public AdminMainPage logOut() {
         clickElement(logOutButton);
         return this;
     }

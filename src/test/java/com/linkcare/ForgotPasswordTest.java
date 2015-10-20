@@ -2,7 +2,6 @@ package com.linkcare;
 
 import com.linkcare.pages.ForgotPasswordPage;
 import com.linkcare.pages.LoginPage;
-import com.linkcare.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;

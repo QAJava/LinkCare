@@ -1,6 +1,6 @@
 package com.linkcare;
 
-import com.linkcare.pages.MainPage;
+import com.linkcare.pages.DoctorMainPage;
 import com.linkcare.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,13 +30,13 @@ public class RegistrationTest {
 public WebDriver driver;
 
     public RegistrationPage registrationPage;
-    public MainPage mainPage;
+    public DoctorMainPage mainPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         driver = new FirefoxDriver();
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage = PageFactory.initElements(driver, DoctorMainPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)

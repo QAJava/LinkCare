@@ -4,14 +4,16 @@ package com.linkcare.pages;
  * Created by Christina on 28/05/2015.
  */
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.linkcare.SampleTestNgTest;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.Keys;
+
+
 
 
 public class DoctorMainPage extends Page {
-
 
     @FindBy(id = "MainContent_LoginUser_UserName")
     WebElement userNameField;
@@ -24,9 +26,9 @@ public class DoctorMainPage extends Page {
     @FindBy(xpath="//*[@id='MainContent_RadPageView1']//div[@class='searchArea']/label")
     WebElement filterByDateOfMeeting;
     @FindBy(xpath="//*[@id='ctl00_MainContent_RDP_AccountMeeting_dateInput']")
-    WebElement FieldOfInputFilterByDateOfMeeting;
+    WebElement fieldOfInputDateOfCalendar;
     @FindBy(xpath="//*[@id='ctl00_MainContent_RDP_AccountMeeting_popupButton']")
-    WebElement openCalendar;
+    WebElement buttonOfCalendar;
     @FindBy(xpath="//*[@id='MainContent_BtnDeleteMeeting']")
     WebElement removeFilter;
     @FindBy(xpath="//*[@id='MainContent_ItemLinkButton3']")
@@ -82,7 +84,7 @@ public class DoctorMainPage extends Page {
 
     }
 
-    public DoctorMainPage openMainPage(WebDriver driver, String baseUrl) {
+    public DoctorMainPage openMainPage(WebDriver driver /*String baseUrl*/) {
         driver.get("http://dhclinicappv2stg.item-soft.co.il/SecurityInfrastructure/Tabs.aspx");
         return this;
     }
@@ -110,6 +112,30 @@ public class DoctorMainPage extends Page {
         clickElement(tabSearchPatients);
         return this;
     }
+
+    public DoctorMainPage clickToCalendarButton() {
+        clickElement(buttonOfCalendar);
+        return this;
+    }
+
+    public  DoctorMainPage fillToCalendarField(String date) {
+        setElementText(fieldOfInputDateOfCalendar,date);
+        driver.findElement(By.id("ctl00_MainContent_RDP_AccountMeeting_dateInput")).sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public DoctorMainPage clickToRemoveFilter() {
+        clickElement(removeFilter);
+        return this;
+    }
+
+    public  DoctorMainPage clearCalendarFieldByBackspase() {
+        driver.findElement(By.id("ctl00_MainContent_RDP_AccountMeeting_dateInput")).sendKeys(Keys.BACK_SPACE);
+        return this;
+    }
+
+
+
 
     public boolean isOnMainPage() {
 

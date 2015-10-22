@@ -316,7 +316,7 @@ public class ClinicAdminPage extends Page {
 
     public ClinicAdminPage checkClinicNameFilter (String filterText) {
         fillNameFilterField (filterText);
-        clinicNameField.sendKeys(Keys.ENTER);
+        clinicNameFilterField.sendKeys(Keys.ENTER);
         waitUntilIsLoaded(filteredTable);
         List<WebElement> rows = filteredTable.findElements(By.tagName("tr"));
         java.util.Iterator<WebElement> i = rows.iterator();

@@ -16,6 +16,10 @@ import org.testng.annotations.Test;
  * Created by Svetlana on 22.10.2015.
  */
 public class ClinicAdminPageTest {
+	public static String clinicName = "Clinic1";
+	public static String clinicAddress = "Rehovot prof Plaut 10";
+	public static String clinicPhone = "12345678";
+
 	public WebDriver driver;
 	public LoginPage loginPage;
 	public ClinicAdminPage clinicAdminPage;
@@ -49,13 +53,31 @@ public class ClinicAdminPageTest {
 	@Test
 	public void checkFilter() {
 		try {
-			clinicAdminPage.checkClinicNameFilter("a");
+			clinicAdminPage.checkClinicNameFilter("o");
 			} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
+	@Test
+	public void createNewClinic() {
+		try {
+			clinicAdminPage.clickAddNewClinic()
+					.waitUntilNewClinicWindow()
+					.fillClinicName(clinicName)
+					.clickToChooseOrgButton()
+					.waitUntilChooseOrgPageIsLoaded()
+					.clickToChoosePrivatDoc()
+					//.chooseOrganization("רופאים פרטיים")
+					.clickToSelectOrg()
+					.fillClinicAddress(clinicAddress)
+					.fillClinicPhone(clinicPhone)
+					.clickToProceed()
+					.clickToSave();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	@AfterClass(alwaysRun = true)
 	public void teardown() {
 		this.driver.quit();

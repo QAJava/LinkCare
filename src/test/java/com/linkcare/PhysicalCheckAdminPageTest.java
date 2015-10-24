@@ -1,4 +1,4 @@
-package com.linkcare.util;
+package com.linkcare;
 
 import com.linkcare.pages.LoginPage;
 import com.linkcare.pages.PhysicalCheckAdminPage;
@@ -47,17 +47,17 @@ public class PhysicalCheckAdminPageTest {
 
 	@Test
 	public void openNewRecord() {
-		try {
+
 			physicalCheckAdminPage.clickToAddRecord();
 			physicalCheckAdminPage.waitUntilNewRecordIsOpened();
-			Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test non passed - New Record Form Is Not Opened ");
+			Assert.assertTrue(!physicalCheckAdminPage.insertButtonIsDisplayed(), "Test non passed - New Record Form Is Not Opened ");
 			//Thread.sleep(5000);
 			physicalCheckAdminPage.clickToCancelButton();
 			//Thread.sleep(5000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
+
+
 	@Test
 	public void createEmptyRecord() {
 		try {

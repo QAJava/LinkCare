@@ -194,5 +194,13 @@ public class PhysicalCheckAdminPage extends Page {
 	public Boolean insertButtonIsDisplayed(){
 		return insertButton.isDisplayed() ;
 	}
+	public PhysicalCheckAdminPage waitMilliseconds(long millis){
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return this;
+	}
 
 }

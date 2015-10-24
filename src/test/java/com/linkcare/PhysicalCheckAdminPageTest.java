@@ -41,7 +41,7 @@ public class PhysicalCheckAdminPageTest {
 	public void openNewRecord() {
 		physicalCheckAdminPage.clickToAddRecord();
 		physicalCheckAdminPage.waitUntilNewRecordIsOpened();
-		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test non passed - New Record Form Is Not Opened ");
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test fails - new Record Form is not opened ");
 		physicalCheckAdminPage.clickToCancelButton();
 	}
 	@Test
@@ -51,7 +51,7 @@ public class PhysicalCheckAdminPageTest {
 				.waitUntilNewRecordIsOpened()
 				.clickToInsertButton()
 				.waitMilliseconds(2000);
-		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Non passed - New Record Form is created");
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test fails - new empty Record is created");
 	}
 	@AfterClass(alwaysRun = true)
 	public void teardown() {

@@ -31,9 +31,6 @@ public abstract class Page {
   }
 
 
-
-
-
   public void goBackBrowserButton() {
     driver.navigate().back();
   }
@@ -45,8 +42,6 @@ public abstract class Page {
   public void reloadPage() {
     driver.navigate().refresh();
   }
-
-
 
 
   public String getTitle() {
@@ -113,7 +108,7 @@ public abstract class Page {
     return option.getText();
   }
 
-  public void selectValueInDropdownbyText (WebElement dropdown, String value) {
+  public void selectValueInDropdownbyText(WebElement dropdown, String value) {
     Select select = new Select(dropdown);
     select.selectByVisibleText(value);
 

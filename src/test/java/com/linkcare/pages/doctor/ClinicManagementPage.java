@@ -133,7 +133,7 @@ public class ClinicManagementPage extends Page {
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_PasswordRequired']")
  WebElement passwordRequiredField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ConfirmPasswordLabel']")
- WebElement confirmPasswordLabelButton;
+ WebElement confirmPasswordField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ConfirmPasswordRequired']")
  WebElement confirmPasswordRequiredButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']")
@@ -141,7 +141,7 @@ public class ClinicManagementPage extends Page {
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']/option[1]")
  WebElement roles1;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']/option[2]")
- WebElement roles2DropDownList;
+ WebElement roles2;
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_RCB_organization']")
  WebElement organizationButton;
  @FindBy(xpath = ".//*[contains(text(),'קופת חולים כללית')]")
@@ -150,9 +150,16 @@ public class ClinicManagementPage extends Page {
  WebElement radioIconButton;
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_dateInput']")
  WebElement dateInputField;
-
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_CalendarPopupButton']")
  WebElement calendarPopupButton;
+ @FindBy(xpath = ".//*[@class='rcFastNext']")
+ WebElement calendarFastNextButton;
+ @FindBy(xpath = ".//*[@class='rcNext']")
+ WebElement calendarNextButton;
+ @FindBy(xpath = ".//*[@class='rcFastPrev']")
+ WebElement calendarFastPrevButton;
+ @FindBy(xpath = ".//*[@class='rcPrev']")
+ WebElement calendarPrevButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_PersonalIdTxt']")
  WebElement personalIdField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ContactCellTxt']")
@@ -203,7 +210,10 @@ public class ClinicManagementPage extends Page {
   clickElement(clinicManagementButton);
   return this;
  }
-
+ public  ClinicManagementPage fillUsernameField(String text){
+  setElementText(userNameField,text);
+  return this;
+ }
  //עריכת פרטי הקליניקה
 
  public ClinicManagementPage fillClinicNameField(String text) {
@@ -256,15 +266,19 @@ public class ClinicManagementPage extends Page {
   setElementText(passwordRequiredField, text);
   return this;
  }
-
+ public ClinicManagementPage fillconfirmPasswordField(String text) {
+  setElementText(confirmPasswordField, text) ;
+  return this;
+ }
  public ClinicManagementPage clickOnRolesDropDownList(){
   clickElement(rolesDropDownList);
   return this;
  }
  public ClinicManagementPage chooseFromRolesDropDownList(){
-  clickElement(roles1);
+  clickElement(roles2);
   return this;
  }
+
  public ClinicManagementPage fillDateInputField(String text) {
   setElementText(dateInputField, text);
   return this;
@@ -391,5 +405,13 @@ public class ClinicManagementPage extends Page {
   element.click();
  }
 
-    }
+ public boolean isOnClinicManagementPage() {
+
+  return exists(addNewUserButton);
+ }
+
+ public boolean alertMessageNotValidPassword() {
+  return exists(passwordLabelField);
+ }
+}
 

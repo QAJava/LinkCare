@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- *
+ *Oleg
  */
 public class LoginTest {
     public static String USER = "AdminSuperUser";
@@ -82,6 +82,24 @@ public WebDriver driver;
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test(groups = {"smoke", "negative"})
+    public void LoginWithoutUsername() {
+        try {
+            loginPage
+                    .fillEmailField("")
+                    .fillPasswordField(PASSWORD)
+                    .clickOnLogin()
+                    .waitUntilAllertEmptyUserIsLoaded();
+            assertTrue("The Main Page is opened", loginPage.isOnLoginPage());
+            assertTrue("Alert message 'שם משתמש חובה' is not presented", loginPage.alertMessageEmptyUser());
+
+            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test(groups = {"smoke", "positive"})

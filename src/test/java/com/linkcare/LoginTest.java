@@ -6,6 +6,7 @@ import com.linkcare.pages.DoctorMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -50,11 +51,8 @@ public WebDriver driver;
                     .fillEmailField(USER)
                     .fillPasswordField(PASSWORD)
                     .clickOnLogin();
-           // mainPage.waitUntilMainPageIsLoaded();
-            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-
-            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
-        } catch (Exception e) {
+            Assert.assertTrue(mainPage.isOnMainPage(), "The Main Page doesn't open");
+            } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -76,7 +74,7 @@ public WebDriver driver;
                     .fillPasswordField(PASSWORD)
                     .clickOnLogin();
             mainPage.waitUntilMainPageIsLoaded();
-            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            Assert.assertTrue(mainPage.isOnMainPage(), "The Main Page doesn't open");
             mainPage.logOut();
 
         } catch (Exception e) {
@@ -92,10 +90,8 @@ public WebDriver driver;
                     .fillPasswordField(PASSWORD)
                     .clickOnLogin()
                     .waitUntilAllertEmptyUserIsLoaded();
-            assertTrue("The Main Page is opened", loginPage.isOnLoginPage());
-            assertTrue("Alert message 'שם משתמש חובה' is not presented", loginPage.alertMessageEmptyUser());
-
-            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
+            Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
+            Assert.assertTrue(loginPage.alertMessageEmptyUser(), "Alert message 'שם משתמש חובה' is not presented");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,7 +104,7 @@ public WebDriver driver;
                 loginPage
                         .clickOnForgotPasswordLink();
                 forgotPasswordPage.waitUntilForgotPasswordPageIsLoaded();
-                assertTrue("The Reset Password Page doesn't open", forgotPasswordPage.isOnForgotPassPage());
+                Assert.assertTrue(forgotPasswordPage.isOnForgotPassPage(), "The Reset Password Page doesn't open");
             } catch (Exception e) {
                 e.printStackTrace();
             }

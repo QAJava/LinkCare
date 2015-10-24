@@ -1,9 +1,8 @@
-package com.linkcare.util;
+package com.linkcare;
 
 import com.linkcare.pages.DoctorMainPage;
 import com.linkcare.pages.LoginPage;
-import com.linkcare.pages.RegistrationPage;
-import com.linkcare.pages.doctor.ClinicManagementPage;
+import com.linkcare.pages.ClinicManagementPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -77,7 +76,6 @@ public class ClinicManagementPageTest {
             mainPage.waitUntilMainPageIsLoaded();
             assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
 
-            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }

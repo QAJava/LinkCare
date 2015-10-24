@@ -24,29 +24,25 @@ public class PhysicalCheckAdminPageTest {
 		driver = new FirefoxDriver();
 		loginPage = PageFactory.initElements(driver, LoginPage.class);
 		physicalCheckAdminPage = PageFactory.initElements(driver,PhysicalCheckAdminPage.class);
-			try {
-				loginPage.opennLoginPage(driver)
-						.waitUntilLoginPageIsLoaded()
-						.login("AdminSuperUser", "4SnoopLv");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		loginPage.opennLoginPage(driver)
+				.waitUntilLoginPageIsLoaded()
+				.login("AdminSuperUser", "4SnoopLv");
 
 	}
 
 	@BeforeMethod(alwaysRun = true)
 	public void beforeMethodSetUp() {
-		try {
-			physicalCheckAdminPage
-					.openPhysicalCheckPage(driver)
-					.waitAddRecordButton();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		physicalCheckAdminPage
+				.openPhysicalCheckPage(driver)
+				.waitAddRecordButton();
 	}
 
 	@Test
 	public void openNewRecord() {
+		physicalCheckAdminPage.clickToAddRecord();
+		physicalCheckAdminPage.waitUntilNewRecordIsOpened();
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test non passed - New Record Form Is Not Opened ");
+		physicalCheckAdminPage.clickToCancelButton();
 
 			physicalCheckAdminPage.clickToAddRecord();
 			physicalCheckAdminPage.waitUntilNewRecordIsOpened();
@@ -60,17 +56,12 @@ public class PhysicalCheckAdminPageTest {
 
 	@Test
 	public void createEmptyRecord() {
-		try {
-			physicalCheckAdminPage
-					.clickToAddRecord()
-					.waitUntilNewRecordIsOpened()
-					.clickToInsertButton()
-					.waitAddRecordButton();
-				//	Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Non passed - New Record Form is closed ");
-			//Thread.sleep(5000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		physicalCheckAdminPage
+				.clickToAddRecord()
+				.waitUntilNewRecordIsOpened()
+				.clickToInsertButton()
+				.waitMilliseconds(2000);
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Non passed - New Record Form is created");
 	}
 	@AfterClass(alwaysRun = true)
 	public void teardown() {

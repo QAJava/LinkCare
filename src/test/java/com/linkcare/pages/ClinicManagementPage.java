@@ -13,9 +13,10 @@ import java.io.IOException;
 
 public class ClinicManagementPage extends Page {
 
- @FindBy(xpath = ".//*[@class='rmText'][contains(text(),'ניהול קליניקה')]")
- WebElement clinicManagementButton;
-
+// @FindBy(xpath = ".//*[@class='rmText'][contains(text(),'ניהול קליניקה')]")
+ //WebElement clinicManagementButton;
+@FindBy(xpath = ".//*[@class='rmLink rmRootLink rootItems']/span[contains(text(),'ניהול קליניקה')]")
+WebElement clinicManagementButton;
  //Edit Details of Clinic.
  @FindBy(xpath = ".//*[@class='rtsTxt'][contains(text(),'עריכת פרטי הקליניקה')]")
  WebElement clinicEditInformationButton;

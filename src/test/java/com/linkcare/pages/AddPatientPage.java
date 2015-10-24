@@ -9,12 +9,15 @@ import org.openqa.selenium.support.PageFactory;
  * Created by Cristina on 10/23/15.
  */
 public class AddPatientPage extends Page {
+
+    @FindBy(xpath = "//*[@id='MainContent_ItemLinkButton3']")
+    WebElement buttonAdd;
     @FindBy(xpath = "//*[@id='popup']//div[contains(text(),'פרטי חשבון')]")
-    WebElement accountDetails;
+    WebElement labelAccountDetails;
     @FindBy(xpath = "//*[@id='popup']//div[@class='PopupCloseBtn']")
     WebElement signOutFromAccountDetails;
     @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_UpdatePanel1']//legend[contains(text(),'פרטי המטופל/ת')]")
-    WebElement PatientInformation;
+    WebElement patientInformation;
     @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_RBL_DepPatient_0']")
     WebElement radioButtonBoyGirl;
     @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_RBL_DepPatient_1']")
@@ -55,6 +58,23 @@ public class AddPatientPage extends Page {
     WebElement dailyPlaner;
     @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_SaveAccount']")
     WebElement buttonSaveAccount;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_LblErrorMessage']")
+    WebElement messageResponsibleAdultMustBeAttachedAccount;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_CustomValidator1']")
+    WebElement redStarForPersonalID;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_LastNameRequired']")
+    WebElement redStarForLastName;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_RegularExpressionValidator2']")
+    WebElement errorMessageOnlyLettersForLastName;
+    @FindBy(xpath = ".//*[@id='MainContent_AddEditAccount1_FirstNameRequired']")
+    WebElement redStarForFirstName;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_RegularExpressionValidator1']")
+    WebElement errorMessageOnlyLettersForFirstName;
+    @FindBy(xpath = "//*[@id='MainContent_AddEditAccount1_RequiredFieldValidator6']")
+    WebElement redStarForWeight;
+
+
+
 
 
 
@@ -66,5 +86,26 @@ public class AddPatientPage extends Page {
         this.PAGE_URL = baseUrl + "/home";
 
     }
+
+    public AddPatientPage waitUntilAddPageIsLoaded() {
+        waitUntilIsLoaded(labelAccountDetails);
+        return this;
+    }
+
+
+
+    public AddPatientPage clickToButtonAdd() {
+        clickElement(buttonAdd);
+        return this;
+    }
+
+    public AddPatientPage clickToOutputFromFormAddPatient() {
+        clickElement(signOutFromAccountDetails);
+        return this;
+    }
+
+
+
+  /*  public boolean visibleLabelListOfPatientsPatientActive() {return exists(labelListOfPatientsForPatientsActive);}*/
 
 }

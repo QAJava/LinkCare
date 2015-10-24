@@ -44,6 +44,7 @@ public class RegistrationPage extends Page {
 
 	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_AddressTxt")
 	 WebElement streetNameField;
+
 	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_HouseNumberTxt")
 	 WebElement houseNumberField;
 
@@ -97,11 +98,10 @@ public class RegistrationPage extends Page {
 
 //Fill the fileds
     //ToDo Add method fill passwored again, add another methods
-public RegistrationPage fillUsernameField (String username) {
+    public RegistrationPage fillUsernameField (String username) {
     setElementText(usernameField, username);
     return this;
 }
-
     public RegistrationPage fillEmailField(String email) {
         setElementText(emailField, email);
         return this;
@@ -110,6 +110,12 @@ public RegistrationPage fillUsernameField (String username) {
     public RegistrationPage fillPasswordField(String password) {
         setElementText(passwordField, password);
        // Log.info("entering password from the list: " + password + " ");
+        return this;
+    }
+
+    public RegistrationPage fillConfPasswordField(String password) {
+        setElementText(confirmPassField, password);
+        // Log.info("entering password from the list: " + password + " ");
         return this;
     }
 
@@ -122,6 +128,30 @@ public RegistrationPage fillUsernameField (String username) {
     public RegistrationPage fillLastNameField(String lastName) {
         setElementText(lastNameField, lastName);
      //   Log.info("entering last name from the list: " + lastName + " ");
+        return this;
+    }
+
+    public RegistrationPage fillIdField(String id) {
+        setElementText(teudatField, id);
+        //   Log.info("entering last name from the list: " + lastName + " ");
+        return this;
+    }
+
+    public RegistrationPage fillStreetField(String street) {
+        setElementText(streetNameField, street);
+        //   Log.info("entering last name from the list: " + lastName + " ");
+        return this;
+    }
+
+    public RegistrationPage fillHouseField(String house) {
+        setElementText(houseNumberField, house);
+        //   Log.info("entering last name from the list: " + lastName + " ");
+        return this;
+    }
+
+    public RegistrationPage fillCityField(String city) {
+        setElementText(cityField, city);
+        //   Log.info("entering last name from the list: " + lastName + " ");
         return this;
     }
 

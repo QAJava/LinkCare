@@ -57,7 +57,12 @@ public WebDriver driver;
                     .fillFirstNameField(firstName)
                     .fillPasswordField(password)
                     .fillEmailField(email)
-                    //ToDo: add another fields
+                    .fillLastNameField(lastName)
+                    .fillConfPasswordField(password)
+                    .fillIdField(teudat)
+                    .fillStreetField(street)
+                    .fillHouseField(housenumber)
+                    .fillCityField(city)
                     .clickToSubmit();
 
            mainPage.waitUntilMainPageIsLoaded();
@@ -78,9 +83,13 @@ public WebDriver driver;
                     .fillFirstNameField("")
                     .fillPasswordField(password)
                     .fillEmailField(email)
-                            //ToDo: add another fields
+                    .fillLastNameField(lastName)
+                    .fillConfPasswordField(password)
+                    .fillIdField(teudat)
+                    .fillStreetField(street)
+                    .fillHouseField(housenumber)
+                    .fillCityField(city)
                     .clickToSubmit();
-
 
             // mainPage.waitUntilMainPageIsLoaded();
             assertTrue("The Main Page is opened", registrationPage.isOnRegistrationPage());

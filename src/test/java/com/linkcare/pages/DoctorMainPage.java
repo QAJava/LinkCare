@@ -4,11 +4,12 @@ package com.linkcare.pages;
  * Created by Christina on 28/05/2015.
  */
 
-import com.linkcare.SampleTestNgTest;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.Keys;
 
 
 
@@ -52,7 +53,7 @@ public class DoctorMainPage extends Page {
     //For Patients Today
     @FindBy(xpath = "//*[@id='ctl00_MainContent_RadTabStrip1']//span[contains(text(),'מטופלים להיום')]")
     WebElement tabPatientsToday;
-    @FindBy(xpath = "//*[@id='MainContent_ctl01']//h2 ']")
+    @FindBy(xpath = "//*[@id='MainContent_ctl01']//h2]")
     WebElement listOfPatientsToday;
     @FindBy(xpath = "//*[@id='MainContent_ctl01']//h2[contains(text(),'רשימת מטופלים')]")
     WebElement labelListOfPatientsForPatientsToday;
@@ -68,7 +69,7 @@ public class DoctorMainPage extends Page {
     //Fot Search Patients
     @FindBy(xpath = "//*[@id='ctl00_MainContent_RadTabStrip1']//span[contains(text(),'חיפוש מטופלים')]")
     WebElement tabSearchPatients;
-    @FindBy(xpath = "//*[@id='MainContent_ctl02']//h2']")
+    @FindBy(xpath = "//*[@id='MainContent_ctl02']//h2]")
     WebElement listOfPatientsSearchPatients;
     @FindBy(xpath = "//*[@id='MainContent_ctl02']//h2[contains(text(),'רשימת מטופלים')]")
     WebElement labelListOfPatientsForSearchPatients;

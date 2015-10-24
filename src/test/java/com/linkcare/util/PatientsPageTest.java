@@ -2,16 +2,16 @@ package com.linkcare.util;
 
 import com.linkcare.pages.DoctorMainPage;
 import com.linkcare.pages.LoginPage;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
+
 import static java.lang.Thread.sleep;
-import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Christina on 10/16/15.
@@ -46,24 +46,26 @@ public class PatientsPageTest {
 
     @Test(groups = {"smoke", "positive"})
     public void test1() {
-        try {
+
             mainPage
                     .clickToSelectPatientsActive()
-                    .waitUntilLabelListOfPatientsForPatientsActiveIsLoaded()
-                    .clickToSelectPatientsToday()
-                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded()
-                    .clickToSelectSearchPatients()
-                    .waitUntilLabelListOfPatientsForSearchPatientsIsLoaded()
-                    .clickToSelectPatientsToday()
-                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded()
-                    .clickToSelectPatientsActive()
                     .waitUntilLabelListOfPatientsForPatientsActiveIsLoaded();
-            assertTrue("The Patient Active Page doesn't open", mainPage.visibleLabelListOfPatientsPatientActive()) ;
-//            assertTrue("The Search Patient Page doesn't open",mainPage.visibleLabelListOfPatientsSearchPatient());
-//            assertTrue("The Patient Today Page doesn't open", mainPage.visibleLabelListOfPatientsPatientToday());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Assert.assertTrue(mainPage.visibleLabelListOfPatientsPatientActive(),"The Patient Active Page doesn't open") ;
+        mainPage.clickToSelectPatientsToday()
+                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded();
+        Assert.assertTrue(mainPage.visibleLabelListOfPatientsPatientToday(), "The Patient Today Page doesn't open");
+        mainPage.clickToSelectSearchPatients()
+                    .waitUntilLabelListOfPatientsForSearchPatientsIsLoaded();
+        Assert.assertTrue(mainPage.visibleLabelListOfPatientsSearchPatient(), "The Search Patient Page doesn't open");
+       /* mainPage.clickToSelectPatientsToday()
+                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded()
+
+                    .clickToSelectPatientsActive()
+                    .waitUntilLabelListOfPatientsForPatientsActiveIsLoaded();*/
+
+            //
+            //
+
     }
 
     @Test(groups = {"smoke", "positive"})

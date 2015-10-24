@@ -5,6 +5,7 @@ import com.linkcare.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -46,7 +47,7 @@ public class ForgotPasswordTest {
                     .waitUntilForgotPasswordPageIsLoaded()
                     .fillUsernameField("DoctorHouse")
                     .clickOnRestoreButton();
-            assertTrue("The Login Page doesn't open", loginPage.isOnLoginPage());
+            Assert.assertTrue(loginPage.isOnLoginPage(), "The Login Page doesn't open");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +62,7 @@ public class ForgotPasswordTest {
                     .waitUntilForgotPasswordPageIsLoaded()
                     .fillUsernameField("DoctorH")
                     .clickOnRestoreButton();
-            assertTrue("The Failure Notification Alert doesn't open", forgotPasswordPage.isFailureNotificationAlert());
+            Assert.assertTrue(forgotPasswordPage.isFailureNotificationAlert(), "The Failure Notification Alert doesn't open");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -76,6 +76,9 @@ public class ClinicAdminPage extends Page {
     WebElement notIsEmptyButton;
 
     //add new clinic
+    @FindBy(id = "ctl00_MainContent_rwAddClinic_C")
+    private WebElement createNewClinicWindow;
+
     @FindBy(id = "MainContent_AddNewItem")
     WebElement addNewClinicButton;
 
@@ -127,6 +130,7 @@ public class ClinicAdminPage extends Page {
     WebElement organizationName2;
 
 //create user-manager dialog window
+
     @FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_UserName")
     WebElement usernameField;
 
@@ -180,7 +184,7 @@ public class ClinicAdminPage extends Page {
 
 	@FindBy(id = "MainContent_cancel")
 	WebElement cancelButton;
-    //end
+      //end
 
 
 
@@ -316,7 +320,7 @@ public class ClinicAdminPage extends Page {
 
     public ClinicAdminPage checkClinicNameFilter (String filterText) {
         fillNameFilterField (filterText);
-        clinicNameField.sendKeys(Keys.ENTER);
+        clinicNameFilterField.sendKeys(Keys.ENTER);
         waitUntilIsLoaded(filteredTable);
         List<WebElement> rows = filteredTable.findElements(By.tagName("tr"));
         java.util.Iterator<WebElement> i = rows.iterator();
@@ -324,24 +328,63 @@ public class ClinicAdminPage extends Page {
             WebElement row = i.next();
             WebElement clinicName = (WebElement) row.findElements(By.xpath("/td[2]"));
             String clinicText = clinicName.getText();
-            Assert.assertEquals(clinicText.substring(0, 1),"a","Not all Clinic Names, for example " +clinicText+ " begins with " +filterText+"");
+            Assert.assertEquals(clinicText.substring(0,1),filterText,"Not all Clinic Names, for example " +clinicText+ " begins with " +filterText+"");
         }
         return this;
     }
 
-
+    //create new clinic methods
+    public ClinicAdminPage clickAddNewClinic() {
+        clickElement(addNewClinicButton);
+        return this;
+    }
+    public ClinicAdminPage waitUntilNewClinicWindow() {
+        try {
+            waitUntilElementIsLoaded(createNewClinicWindow);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+    public ClinicAdminPage waitUntilChooseOrgPageIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(selectButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+    public ClinicAdminPage clickToChooseOrgButton() {
+        clickElement(chooseOrgButton);
+        return this;
+    }
     public ClinicAdminPage chooseOrganization(String name) {
-
         WebElement element = driver.findElement(By.xpath("//*[@id='TreeView1']//span[contains(text(),'" + name + "')]"));
         element.click();
         return this;
     }
-
+    public ClinicAdminPage clickToChoosePrivatDoc() {
+        clickElement(privateDoctorsButton);
+        return this;
+    }
+    //*[@id='TreeView1']//span[contains(text(),"רופאים פרטיים")]
     public ClinicAdminPage clickToSelectOrg() {
         clickElement(selectButton);
         return this;
     }
-
+     public ClinicAdminPage clickToProceed() {
+         clickElement(proceedButton);
+         return this;
+     }
+    public ClinicAdminPage clickToSave() {
+        clickElement(saveButton);
+        return this;
+    }
+    //fill create new clinic fields
     public ClinicAdminPage fillClinicName(String text) {
         setElementText(clinicNameField, text);
         return this;
@@ -355,16 +398,6 @@ public class ClinicAdminPage extends Page {
     public ClinicAdminPage fillClinicAddress(String text) {
         setElementText(clinicAddressFiled, text);
         return this;
-    }
-
-    public ClinicAdminPage clickToProceed() {
-        clickElement(proceedButton);
-        return this;
-    }
-
-    public boolean isOnClinicPage() {
-        waitUntilClinicPageIsLoaded();
-        return exists(clinicIdSortButton);
     }
 
     public ClinicAdminPage fillEmailField(String email) {

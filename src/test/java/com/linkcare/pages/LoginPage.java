@@ -32,8 +32,11 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//*[@class='failureNotification' and contains(text(),'ניסיון ההתחברות שלך לא הצליח. אנא נסה שוב')]")
     WebElement failureNotificationAlert;
 
-    @FindBy(xpath = "s")
-    WebElement invalidEmailAlert;
+    @FindBy(xpath = "//*[@id='MainContent_LoginUser_LoginUserValidationSummary' and contains(.,'שם משתמש חובה')]")
+    WebElement emptyUserAlert;
+
+    @FindBy(xpath = "//*[@id='MainContent_LoginUser_LoginUserValidationSummary' and contains(.,'סיסמא חובה')]")
+    WebElement emptyPassAlert;
 
 
 
@@ -62,9 +65,9 @@ public class LoginPage extends Page {
         }return this;
     }
 
-    public LoginPage waitUntilAllertEmailIsLogIsLoaded() {
+    public LoginPage waitUntilAllertFailureNotificationIsLoaded() {
         try {
-            waitUntilElementIsLoaded(invalidEmailAlert);
+            waitUntilElementIsLoaded(failureNotificationAlert);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -72,9 +75,19 @@ public class LoginPage extends Page {
         }return this;
     }
 
-    public LoginPage waitUntilAllertFailureNotificationIsLoaded() {
+    public LoginPage waitUntilAllertEmptyUserIsLoaded() {
         try {
-            waitUntilElementIsLoaded(failureNotificationAlert);
+            waitUntilElementIsLoaded(emptyUserAlert);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }return this;
+    }
+
+    public LoginPage waitUntilAllertEmptyPassIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(emptyPassAlert);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -123,13 +136,18 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public boolean alertMessageInvalidEmail() {
-        return exists(invalidEmailAlert);
-    }
-
     public boolean alertMessageFailureNotification() {
         return exists(failureNotificationAlert);
     }
+
+    public boolean alertMessageEmptyUser() {
+        return exists(emptyUserAlert);
+    }
+
+    public boolean alertMessageEmptePass() {
+        return exists(emptyPassAlert);
+    }
+
 
 
 }

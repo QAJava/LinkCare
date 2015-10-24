@@ -10,11 +10,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-import java.awt.Robot;
-import static java.awt.event.KeyEvent.VK_ENTER;
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
-import org.openqa.selenium.Keys;
 
 /**
  * Created by Christina on 10/16/15.
@@ -25,7 +22,6 @@ public class PatientsPageTest {
     public WebDriver driver;
     public DoctorMainPage mainPage;
     public LoginPage loginPage;
-    Robot robot;
 
 
     @BeforeClass(alwaysRun = true)
@@ -53,13 +49,18 @@ public class PatientsPageTest {
         try {
             mainPage
                     .clickToSelectPatientsActive()
+                    .waitUntilLabelListOfPatientsForPatientsActiveIsLoaded()
                     .clickToSelectPatientsToday()
+                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded()
                     .clickToSelectSearchPatients()
+                    .waitUntilLabelListOfPatientsForSearchPatientsIsLoaded()
                     .clickToSelectPatientsToday()
-                    .clickToSelectPatientsActive();
-          /*  assertTrue("The Patient Active Page doesn't open",;
-            assertTrue("The Patient Today Page doesn't open",;
-            assertTrue("The Search Patient Page doesn't open",;*/
+                    .waitUntilLabelListOfPatientsForPatientsTodayIsLoaded()
+                    .clickToSelectPatientsActive()
+                    .waitUntilLabelListOfPatientsForPatientsActiveIsLoaded();
+            assertTrue("The Patient Active Page doesn't open", mainPage.visibleLabelListOfPatientsPatientActive()) ;
+//            assertTrue("The Search Patient Page doesn't open",mainPage.visibleLabelListOfPatientsSearchPatient());
+//            assertTrue("The Patient Today Page doesn't open", mainPage.visibleLabelListOfPatientsPatientToday());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,10 +71,9 @@ public class PatientsPageTest {
         try {
             mainPage
                     .clickToCalendarButton()
+                    .waitUntilCalendarIsLoaded()
                     .clickToCalendarButton();
-          /*  assertTrue("The Patient Active Page doesn't open",;
-            assertTrue("The Patient Today Page doesn't open",;
-            assertTrue("The Search Patient Page doesn't open",;*/
+ //           assertTrue("The Patient Active Page doesn't open",mainPage.visibleCalendarAppears());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,10 +100,6 @@ public class PatientsPageTest {
             mainPage
                     .fillToCalendarField(DATE_OF_MEETING)
                     .clickToRemoveFilter();
-            sleep(3000);
-            /*  assertTrue("The Patient Active Page doesn't open",;
-            assertTrue("The Patient Today Page doesn't open",;
-            assertTrue("The Search Patient Page doesn't open",;*/
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,7 +1,5 @@
-package com.linkcare.pages.doctor;
+package com.linkcare.pages;
 
-import com.linkcare.pages.Page;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +10,6 @@ import java.io.IOException;
 /**
  * Created by Zizi78 on 10/17/2015.
  */
-
-
 
 public class ClinicManagementPage extends Page {
 
@@ -80,33 +76,70 @@ public class ClinicManagementPage extends Page {
  WebElement mandatoryQuestionnaireButton;
  @FindBy(xpath = ".//*[contains(text(),'שאלון דיפולטיבי')]")
  WebElement dipoltiviQuestionnaireButton;
+
+//clinicsInternalUsers
+ @FindBy(xpath = ".//*[@class='rtsTxt'][contains(text(),'משתמשים פנימיים בקליניקה')]")
+ WebElement clinicsInternalUsersButton;
+ @FindBy(xpath = ".//*[@id='MainContent_AddNewUser']")
+ WebElement addNewUsersButton;
+ @FindBy(xpath =".//*[contains(text(),'שם משתמש')]" )
+ WebElement usersNameButton;
+ @FindBy(xpath =".//*[@class='rgSortAsc']" )
+ WebElement userNamesSortButton  ;
+ @FindBy(xpath =".//*[contains(text(),'שם תצוגה')]" )
+ WebElement  displayNameButton ;
+ @FindBy(xpath =".//*[@class='rgSortAsc']" )
+ WebElement   displayNameSortButton;
+ @FindBy(xpath =".//*[contains(text(),'מספר זהות')]" )
+ WebElement  personalIdButton ;
+ @FindBy(xpath =".//*[@class='rgSortAsc']" )
+ WebElement  personalIdSortButton ;
+ @FindBy(xpath =".//*[contains(text(),'מייל')]" )
+ WebElement  emailButton ;
+ @FindBy(xpath =".//*[@class='rgSortAsc']" )
+ WebElement  emailSortButton ;
+ @FindBy(xpath = ".//*[contains(text(),'טלפון')]")
+ WebElement phoneButton ;
+ @FindBy(xpath = ".//*[@class='rgSortAsc']")
+ WebElement phoneSortButton  ;
+ @FindBy(xpath =".//*[@id='ctl00_MainContent_RadGrid3_ctl00_ctl04_EditButton']" )
+ WebElement  editButton ;
+
  //Create User
+ @FindBy(xpath =".//*[@id='MainContent_AddNewUser']" )
+ WebElement createNewUserButton;
+ @FindBy(xpath = ".//*[@class='PopupCloseBtn']")
+ WebElement popupCloseButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_UserNameLabel']")
- WebElement userNameButton;
+ WebElement userNameField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_UserNameRequired']")
  WebElement userNameRequired;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_firstNameTxt']")
- WebElement firstNamebutton;
+ WebElement firstNameField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_FirstNameRequired']")
  WebElement firstNameRequired;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_lastNameTxt']")
- WebElement lastNameButton;
+ WebElement lastNameField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ClinicLabel']")
- WebElement clinicLabelButton;
+ WebElement clinicLabelDropDownList;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_EmailLabel']")
- WebElement emailLabelButton;
+ WebElement emailLabelField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_EmailRequired']")
  WebElement emailRequiredButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_PasswordLabel']")
- WebElement passwordLabelButton;
+ WebElement passwordLabelField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_PasswordRequired']")
- WebElement passwordRequiredButton;
+ WebElement passwordRequiredField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ConfirmPasswordLabel']")
- WebElement confirmPasswordLabelButton;
+ WebElement confirmPasswordField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ConfirmPasswordRequired']")
  WebElement confirmPasswordRequiredButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']")
- WebElement rolesButton;
+ WebElement rolesDropDownList;
+ @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']/option[1]")
+ WebElement roles1;
+ @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_rolesDDl']/option[2]")
+ WebElement roles2;
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_RCB_organization']")
  WebElement organizationButton;
  @FindBy(xpath = ".//*[contains(text(),'קופת חולים כללית')]")
@@ -114,9 +147,17 @@ public class ClinicManagementPage extends Page {
  @FindBy(xpath = ".//*[@class='rddtIcon']")
  WebElement radioIconButton;
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_dateInput']")
- WebElement dateInputButton;
+ WebElement dateInputField;
  @FindBy(xpath = ".//*[@id='ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_CalendarPopupButton']")
  WebElement calendarPopupButton;
+ @FindBy(xpath = ".//*[@class='rcFastNext']")
+ WebElement calendarFastNextButton;
+ @FindBy(xpath = ".//*[@class='rcNext']")
+ WebElement calendarNextButton;
+ @FindBy(xpath = ".//*[@class='rcFastPrev']")
+ WebElement calendarFastPrevButton;
+ @FindBy(xpath = ".//*[@class='rcPrev']")
+ WebElement calendarPrevButton;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_PersonalIdTxt']")
  WebElement personalIdField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ContactCellTxt']")
@@ -133,7 +174,7 @@ public class ClinicManagementPage extends Page {
  WebElement countryNameField;
  @FindBy(xpath = ".//*[@id='MainContent_RegisterUser_CreateUserStepContainer_ZipCodeTxt']")
  WebElement zipCodeField;
- @FindBy(xpath = ".//*[@id='MainContent_AddNewUser']")
+ @FindBy(xpath = ".//*[@id='MainContent_AddNewUser'][contains(text(),'שמור')]']")
  WebElement addNewUserButton;
  @FindBy(xpath = ".//*[@id='MainContent_cancel']")
  WebElement cancelButton;
@@ -167,8 +208,12 @@ public class ClinicManagementPage extends Page {
   clickElement(clinicManagementButton);
   return this;
  }
-
+ public  ClinicManagementPage fillUsernameField(String text){
+  setElementText(userNameField,text);
+  return this;
+ }
  //עריכת פרטי הקליניקה
+
  public ClinicManagementPage fillClinicNameField(String text) {
   setElementText(clinicNameField, text);
   return this;
@@ -179,9 +224,106 @@ public class ClinicManagementPage extends Page {
   setElementText(clinicPhoneField, text);
   return this;
  }
+ //משתמשים פנימיים בקליניקה
+ //AddNewUser
+ public ClinicManagementPage clickOnCreateNewUserButton() {
+  clickElement(createNewUserButton);
+  return this;
+ }
+ public ClinicManagementPage fillUserNameLabelField(String text) {
+  setElementText(userNameField, text);
+  return this;
+ }
+ public ClinicManagementPage fillFirstNameField(String text) {
+  setElementText(firstNameField, text);
+  return this;
+ }
 
- public ClinicManagementPage fillClinicAddressField(String text) {
-  setElementText(clinicAddressField, text);
+ public ClinicManagementPage fillLastNameField(String text) {
+  setElementText(lastNameField, text);
+  return this;
+ }
+ public ClinicManagementPage clickOnClinicLabelDropDownList() {
+  clickElement(clinicLabelDropDownList);
+  return this;
+ }
+ public ClinicManagementPage chooseClinicLabelDropDownList(){
+  clickElement(clinicLabelDropDownList);
+  return  this;
+ }
+ public ClinicManagementPage fillEmailLabelField(String text) {
+  setElementText(emailLabelField, text);
+  return this;
+ }
+
+ public ClinicManagementPage fillPasswordLabelField(String text) {
+  setElementText(passwordLabelField, text);
+  return this;
+ }
+ public ClinicManagementPage fillPasswordRequiredField(String text) {
+  setElementText(passwordRequiredField, text);
+  return this;
+ }
+ public ClinicManagementPage fillconfirmPasswordField(String text) {
+  setElementText(confirmPasswordField, text) ;
+  return this;
+ }
+ public ClinicManagementPage clickOnRolesDropDownList(){
+  clickElement(rolesDropDownList);
+  return this;
+ }
+ public ClinicManagementPage chooseFromRolesDropDownList(){
+  clickElement(roles2);
+  return this;
+ }
+
+ public ClinicManagementPage fillDateInputField(String text) {
+  setElementText(dateInputField, text);
+  return this;
+ }
+ public ClinicManagementPage clickOnCalendarPopupButton(){
+  clickElement(calendarPopupButton);
+  return this;
+ }
+
+ public ClinicManagementPage fillPersonalIdField(String text) {
+  setElementText(personalIdField, text);
+  return this;
+ }
+ public ClinicManagementPage fillContactCellField(String text) {
+  setElementText(contactCellField, text);
+  return this;
+ }
+ public ClinicManagementPage fillContactPhoneField(String text) {
+  setElementText(contactPhoneField, text);
+  return this;
+ }
+ public ClinicManagementPage fillAddressField(String text) {
+  setElementText(addressField, text);
+  return this;
+ }
+ public ClinicManagementPage fillHouseNumberField(String text) {
+  setElementText(houseNumberField, text);
+  return this;
+ }
+ public ClinicManagementPage fillCityField(String text) {
+  setElementText(cityField, text);
+  return this;
+ }
+ public ClinicManagementPage fillCountryNameField(String text) {
+  setElementText(countryNameField, text);
+  return this;
+ }
+ public ClinicManagementPage fillZipCodeField(String text) {
+  setElementText(zipCodeField, text);
+  return this;
+ }
+ public ClinicManagementPage clickOnAddNewUserButton() {
+  clickElement(addNewUserButton);
+  return this;
+ }
+ public ClinicManagementPage clickOnCancelButton() {
+  clickElement(cancelButton);
   return this;
  }
 //OptionalQuestionnaire
@@ -234,6 +376,22 @@ public class ClinicManagementPage extends Page {
   clickElement(searchButton);
   return  this;
  }
+
+ public ClinicManagementPage clickOnAddNewUsersButton(){
+  clickElement(addNewUsersButton);
+  return this;
+ }
+ public ClinicManagementPage fillClinicAddressField(String text) {
+  setElementText(clinicAddressField, text);
+  return this;
+ }
+
+ public ClinicManagementPage clickOnClinicEditButton() {
+  clickElement(editButton);
+  return this;
+ }
+
+
  public ClinicManagementPage clickOnClinicEditInformationButton() {
   clickElement(clinicEditInformationButton);
   return this;
@@ -245,5 +403,13 @@ public class ClinicManagementPage extends Page {
   element.click();
  }
 
-    }
+ public boolean isOnClinicManagementPage() {
+
+  return exists(addNewUserButton);
+ }
+
+ public boolean alertMessageNotValidPassword() {
+  return exists(passwordLabelField);
+ }
+}
 

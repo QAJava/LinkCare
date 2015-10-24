@@ -1,4 +1,4 @@
-package com.linkcare.util;
+package com.linkcare;
 
 import com.linkcare.pages.DoctorMainPage;
 import com.linkcare.pages.LoginPage;

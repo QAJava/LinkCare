@@ -1,4 +1,4 @@
-package com.linkcare.util;
+package com.linkcare;
 
 import com.linkcare.pages.ClinicAdminPage;
 import com.linkcare.pages.LoginPage;
@@ -19,6 +19,9 @@ public class ClinicAdminPageTest {
 	public static String clinicName = "Clinic1";
 	public static String clinicAddress = "Rehovot prof Plaut 10";
 	public static String clinicPhone = "12345678";
+	public static String clinicName2 = "Aibolit2";
+	public static String clinicAddress2 = "Rehovot prof Menahem Plaut 10";
+	public static String clinicPhone2 = "123456789";
 
 	public WebDriver driver;
 	public LoginPage loginPage;
@@ -78,6 +81,22 @@ public class ClinicAdminPageTest {
 			e.printStackTrace();
 		}
 	}
+	@Test
+	public void editClinic() {
+		clinicAdminPage.chooseEditButton("0")
+				.waitUntilEditWindowIsLoaded()
+				.fillEditNameField(clinicName2)
+				.fillEditAddressField(clinicAddress2)
+				.fillEditPhoneField(clinicPhone2)
+				.clickToSaveEdit()
+				.openClinicPage(driver)
+				.waitUntilClinicPageIsLoaded();
+		Assert.assertEquals(clinicAdminPage.getTextFromEditedField("0"),clinicName2,"Name of clinic is not edited");
+		}
+
+
+
+
 	@AfterClass(alwaysRun = true)
 	public void teardown() {
 		this.driver.quit();

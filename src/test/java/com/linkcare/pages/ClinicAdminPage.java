@@ -409,5 +409,54 @@ public class ClinicAdminPage extends Page {
         setElementText(passwordField, password);
         return this;
     }
+//edit clinics
+public ClinicAdminPage chooseEditButton(String rowNumber) {
+    WebElement element = driver.findElement(By.xpath("//*[@id='ctl00_MainContent_RadGrid1_ctl00__" + rowNumber + "']/td[6]/a/img"));
+    element.click();
+    return this;
+}
+	@FindBy(id = "MainContent_tbClinicName")
+	WebElement editClinicName;
+    @FindBy(id = "MainContent_tbClinicAddress")
+    WebElement editClinicAddress;
+    @FindBy(id = "MainContent_tbClinicPhone")
+    WebElement editClinicPhone;
+    @FindBy(id = "MainContent_SaveData")
+    WebElement saveEditButton;
+
+    public ClinicAdminPage fillEditNameField(String name) {
+        setElementText(editClinicName, name);
+        return this;
+    }
+    public ClinicAdminPage fillEditAddressField(String address) {
+        setElementText(editClinicAddress, address);
+        return this;
+    }
+    public ClinicAdminPage fillEditPhoneField(String phone) {
+        setElementText(editClinicPhone, phone);
+        return this;
+    }
+    public ClinicAdminPage clickToSaveEdit() {
+        clickElement(saveEditButton);
+        return this;
+    }
+    public String getTextFromEditedField(String rowNumber) {
+        WebElement element = driver.findElement(By.xpath("//*[@id='ctl00_MainContent_RadGrid1_ctl00__" + rowNumber + "']/td[2]"));
+        String editedText=element.getText();
+        return editedText;
+    }
+    public ClinicAdminPage waitUntilEditWindowIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(saveEditButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+    //delete clinics
+	@FindBy(id = "ctl00_MainContent_RadGrid1_ctl00_ctl04_gbccolumn")
+	WebElement deleteClinicButton;
 
 }

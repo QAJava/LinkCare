@@ -29,6 +29,9 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//*[@class='forgot']")
     WebElement forgotLink;
 
+    @FindBy(id="MainContent_LoginUser_RegisterHyperLink")
+    WebElement regLink;
+
     @FindBy(xpath = "//*[@class='failureNotification' and contains(text(),'ניסיון ההתחברות שלך לא הצליח. אנא נסה שוב')]")
     WebElement failureNotificationAlert;
 
@@ -46,7 +49,7 @@ public class LoginPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    public LoginPage opennLoginPage(WebDriver driver) {
+    public LoginPage openLoginPage(WebDriver driver) {
         driver.get(PAGE_URL);
         return this;
     }
@@ -149,5 +152,7 @@ public class LoginPage extends Page {
     }
 
 
-
+    public void clickOnRegLink() {
+        clickElement(regLink);
+    }
 }

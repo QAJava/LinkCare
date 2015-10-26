@@ -24,7 +24,7 @@ public class PhysicalCheckAdminPageTest {
 		driver = new FirefoxDriver();
 		loginPage = PageFactory.initElements(driver, LoginPage.class);
 		physicalCheckAdminPage = PageFactory.initElements(driver,PhysicalCheckAdminPage.class);
-		loginPage.opennLoginPage(driver)
+		loginPage.openLoginPage(driver)
 				.waitUntilLoginPageIsLoaded()
 				.login("AdminSuperUser", "4SnoopLv");
 

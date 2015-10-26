@@ -20,7 +20,8 @@ import static org.testng.AssertJUnit.assertTrue;
 public class LoginTest {
     public static String USER = "AdminSuperUser";
     public static String PASSWORD = "4SnoopLv";
-    public static String USER1 = "AdminSuperU";
+    public static String USER1 = "DoctorHouse";
+    public static String PASSWORD1 = "NV>rY#j!W%vySr";
 public WebDriver driver;
 
     public LoginPage loginPage;
@@ -37,7 +38,7 @@ public WebDriver driver;
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.opennLoginPage(driver);
+            loginPage.openLoginPage(driver);
 //                    .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,11 +46,11 @@ public WebDriver driver;
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void LoginSuccess() {
+    public void LoginDoctorSuccess() {
         try {
             loginPage
-                    .fillEmailField(USER)
-                    .fillPasswordField(PASSWORD)
+                    .fillEmailField(USER1)
+                    .fillPasswordField(PASSWORD1)
                     .clickOnLogin();
             Assert.assertTrue(mainPage.isOnMainPage(), "The Main Page doesn't open");
             } catch (Exception e) {

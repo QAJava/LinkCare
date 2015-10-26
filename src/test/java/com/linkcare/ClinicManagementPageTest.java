@@ -51,7 +51,7 @@ public class ClinicManagementPageTest {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.opennLoginPage(driver)
+            loginPage.openLoginPage(driver)
                     .waitUntilLoginPageIsLoaded()
                     .login("zizi88", "z88@mail");
             clinicManagementPage.openClinicManagementPage(driver)

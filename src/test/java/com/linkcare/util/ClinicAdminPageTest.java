@@ -2,11 +2,9 @@ package com.linkcare.util;
 
 import com.linkcare.pages.ClinicAdminPage;
 import com.linkcare.pages.LoginPage;
-import com.linkcare.pages.PhysicalCheckAdminPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -30,7 +28,7 @@ public class ClinicAdminPageTest {
 		loginPage = PageFactory.initElements(driver, LoginPage.class);
 		clinicAdminPage = PageFactory.initElements(driver,ClinicAdminPage.class);
 			try {
-				loginPage.opennLoginPage(driver)
+				loginPage.openLoginPage(driver)
 						.waitUntilLoginPageIsLoaded()
 						.login("AdminSuperUser", "4SnoopLv");
 			} catch (Exception e) {

@@ -58,7 +58,8 @@ public WebDriver driver;
             } catch (Exception e) {
             e.printStackTrace();
         }
-
+        mainPage.waitUntilMainPageIsLoaded();
+        mainPage.logOut();
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -91,8 +92,7 @@ public WebDriver driver;
             loginPage
                     .fillEmailField("")
                     .fillPasswordField("")
-                    .clickOnLogin()
-                    .waitUntilAllertEmptyUserIsLoaded();
+                    .clickOnLogin();
             Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
             Assert.assertTrue(loginPage.alertMessageEmptyUser(), "Alert message 'שם משתמש חובה' is not presented");
             Assert.assertTrue(loginPage.alertMessageEmptyPass(), "Alert message 'סיסמא חובה' is not presented");
@@ -108,8 +108,7 @@ public WebDriver driver;
             loginPage
                     .fillEmailField("")
                     .fillPasswordField(PASSWORD)
-                    .clickOnLogin()
-                    .waitUntilAllertEmptyUserIsLoaded();
+                    .clickOnLogin();
             Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
             Assert.assertTrue(loginPage.alertMessageEmptyUser(), "Alert message 'שם משתמש חובה' is not presented");
         } catch (Exception e) {
@@ -122,10 +121,9 @@ public WebDriver driver;
     public void LoginWithoutPassword() {
         try {
             loginPage
-                    .fillEmailField("USER1")
+                    .fillEmailField(USER1)
                     .fillPasswordField("")
-                    .clickOnLogin()
-                    .waitUntilAllertEmptyUserIsLoaded();
+                    .clickOnLogin();
             Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
             Assert.assertTrue(loginPage.alertMessageEmptyPass(), "Alert message 'סיסמא חובה' is not presented");
         } catch (Exception e) {
@@ -140,8 +138,7 @@ public WebDriver driver;
             loginPage
                     .fillEmailField("zxc")
                     .fillPasswordField("123")
-                    .clickOnLogin()
-                    .waitUntilAllertEmptyUserIsLoaded();
+                    .clickOnLogin();
             Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
             Assert.assertTrue(loginPage.alertMessageFailureNotification(), "Alert message 'ניסיון ההתחברות שלך לא הצליח. אנא נסה שוב' is not presented");
         } catch (Exception e) {

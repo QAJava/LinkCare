@@ -147,7 +147,7 @@ public class LoginPage extends Page {
         return exists(emptyUserAlert);
     }
 
-    public boolean alertMessageEmptePass() {
+    public boolean alertMessageEmptyPass() {
         return exists(emptyPassAlert);
     }
 

@@ -85,14 +85,14 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/signup_regular";
+        this.PAGE_URL = "http://dhclinicappv2stg.item-soft.co.il/SitePages/createUser.aspx?ReturnUrl=HomePage";
         PageFactory.initElements(driver, this);
      }
 
 
 
     public RegistrationPage openRegistrationPage(WebDriver driver) {
-        driver.get("http://dhclinicappv2stg.item-soft.co.il/SitePages/createUser.aspx?ReturnUrl=HomePage");
+        driver.get(PAGE_URL);
         return this;
     }
 

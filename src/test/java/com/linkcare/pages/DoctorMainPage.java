@@ -82,7 +82,7 @@ public class DoctorMainPage extends Page {
 
     //Buttons
 
-    @FindBy(xpath = "//*[@id='Top1_HeadLoginView_HeadLoginStatus']")
+    @FindBy(xpath = "//*[@id='Top1_HeadLoginStatus']")
     WebElement logOutButton;
 
 

@@ -24,7 +24,7 @@ public class PhysicalCheckAdminPageTest {
 		driver = new FirefoxDriver();
 		loginPage = PageFactory.initElements(driver, LoginPage.class);
 		physicalCheckAdminPage = PageFactory.initElements(driver,PhysicalCheckAdminPage.class);
-		loginPage.opennLoginPage(driver)
+		loginPage.openLoginPage(driver)
 				.waitUntilLoginPageIsLoaded()
 				.login("AdminSuperUser", "4SnoopLv");
 
@@ -41,7 +41,7 @@ public class PhysicalCheckAdminPageTest {
 	public void openNewRecord() {
 		physicalCheckAdminPage.clickToAddRecord();
 		physicalCheckAdminPage.waitUntilNewRecordIsOpened();
-		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test non passed - New Record Form Is Not Opened ");
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test fails - new Record Form is not opened ");
 		physicalCheckAdminPage.clickToCancelButton();
 
 			physicalCheckAdminPage.clickToAddRecord();
@@ -61,7 +61,7 @@ public class PhysicalCheckAdminPageTest {
 				.waitUntilNewRecordIsOpened()
 				.clickToInsertButton()
 				.waitMilliseconds(2000);
-		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Non passed - New Record Form is created");
+		Assert.assertTrue(physicalCheckAdminPage.insertButtonIsDisplayed(), "Test fails - new empty Record is created");
 	}
 	@AfterClass(alwaysRun = true)
 	public void teardown() {

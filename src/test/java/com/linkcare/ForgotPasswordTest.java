@@ -32,7 +32,7 @@ public class ForgotPasswordTest {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.opennLoginPage(driver);
+            loginPage.openLoginPage(driver);
 //                    .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

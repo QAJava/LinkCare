@@ -192,8 +192,14 @@ public class PhysicalCheckAdminPage extends Page {
 		return this;
 	}
 	public Boolean insertButtonIsDisplayed(){
-		return insertButton.isDisplayed() ;
+//		try{
+//			return insertButton.isDisplayed();
+//		} catch (org.openqa.selenium.NoSuchElementException e){
+//			return false;
+//		}
+		return exists(insertButton);
 	}
+
 	public PhysicalCheckAdminPage waitMilliseconds(long millis){
 		try {
 			Thread.sleep(millis);

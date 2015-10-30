@@ -1,6 +1,7 @@
 package com.linkcare;
 
 import com.linkcare.pages.DoctorMainPage;
+import com.linkcare.pages.LoginPage;
 import com.linkcare.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- *
+ *Oleg
  */
 public class RegistrationTest {
     public static String username = "User1";
@@ -31,19 +32,24 @@ public WebDriver driver;
 
     public RegistrationPage registrationPage;
     public DoctorMainPage mainPage;
+    public LoginPage loginPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         driver = new FirefoxDriver();
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         mainPage = PageFactory.initElements(driver, DoctorMainPage.class);
+        loginPage = PageFactory.initElements(driver,LoginPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            registrationPage.openRegistrationPage(driver)
-                             .waitUntilRegPageIsLoaded();
+            loginPage.openLoginPage(driver)
+                    .waitUntilLoginPageIsLoaded()
+                    .clickOnRegLink();
+//            registrationPage.openRegistrationPage(driver)
+            registrationPage.waitUntilRegPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }

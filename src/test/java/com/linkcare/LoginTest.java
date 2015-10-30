@@ -3,6 +3,7 @@ package com.linkcare;
 import com.linkcare.pages.ForgotPasswordPage;
 import com.linkcare.pages.LoginPage;
 import com.linkcare.pages.DoctorMainPage;
+import com.linkcare.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -20,12 +21,14 @@ import static org.testng.AssertJUnit.assertTrue;
 public class LoginTest {
     public static String USER = "AdminSuperUser";
     public static String PASSWORD = "4SnoopLv";
-    public static String USER1 = "AdminSuperU";
+    public static String USER1 = "DoctorHouse";
+    public static String PASSWORD1 = "NV>rY#j!W%vySr";
 public WebDriver driver;
 
     public LoginPage loginPage;
     public DoctorMainPage mainPage;
     public ForgotPasswordPage forgotPasswordPage;
+    public RegistrationPage registrationPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -37,7 +40,7 @@ public WebDriver driver;
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.opennLoginPage(driver);
+            loginPage.openLoginPage(driver);
 //                    .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,17 +48,18 @@ public WebDriver driver;
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void LoginSuccess() {
+    public void LoginDoctorSuccess() {
         try {
             loginPage
-                    .fillEmailField(USER)
-                    .fillPasswordField(PASSWORD)
+                    .fillEmailField(USER1)
+                    .fillPasswordField(PASSWORD1)
                     .clickOnLogin();
             Assert.assertTrue(mainPage.isOnMainPage(), "The Main Page doesn't open");
             } catch (Exception e) {
             e.printStackTrace();
         }
-
+        mainPage.waitUntilMainPageIsLoaded();
+        mainPage.logOut();
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -83,15 +87,60 @@ public WebDriver driver;
     }
 
     @Test(groups = {"smoke", "negative"})
+    public void LoginWithoutLoginPass() {
+        try {
+            loginPage
+                    .fillEmailField("")
+                    .fillPasswordField("")
+                    .clickOnLogin();
+            Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
+            Assert.assertTrue(loginPage.alertMessageEmptyUser(), "Alert message 'שם משתמש חובה' is not presented");
+            Assert.assertTrue(loginPage.alertMessageEmptyPass(), "Alert message 'סיסמא חובה' is not presented");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test(groups = {"smoke", "negative"})
     public void LoginWithoutUsername() {
         try {
             loginPage
                     .fillEmailField("")
                     .fillPasswordField(PASSWORD)
-                    .clickOnLogin()
-                    .waitUntilAllertEmptyUserIsLoaded();
+                    .clickOnLogin();
             Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
             Assert.assertTrue(loginPage.alertMessageEmptyUser(), "Alert message 'שם משתמש חובה' is not presented");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test(groups = {"smoke", "negative"})
+    public void LoginWithoutPassword() {
+        try {
+            loginPage
+                    .fillEmailField(USER1)
+                    .fillPasswordField("")
+                    .clickOnLogin();
+            Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
+            Assert.assertTrue(loginPage.alertMessageEmptyPass(), "Alert message 'סיסמא חובה' is not presented");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test(groups = {"smoke", "negative"})
+    public void LoginWithWrongLoginPass() {
+        try {
+            loginPage
+                    .fillEmailField("zxc")
+                    .fillPasswordField("123")
+                    .clickOnLogin();
+            Assert.assertTrue(loginPage.isOnLoginPage(), "The Main Page is opened");
+            Assert.assertTrue(loginPage.alertMessageFailureNotification(), "Alert message 'ניסיון ההתחברות שלך לא הצליח. אנא נסה שוב' is not presented");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,77 +160,22 @@ public WebDriver driver;
 
         }
 
+    @Test(groups = {"smoke", "positive"})
+    public void CreateNewDoctorLink() {
+        try {
+            loginPage
+                    .clickOnRegLink();
+            registrationPage.waitUntilRegPageIsLoaded();
+            Assert.assertTrue(registrationPage.isOnRegistrationPage(), "The Registration Page doesn't open");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @AfterTest(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
     }
-
-    /*@Test(groups = {"smoke", "negative"})
-    public void LoginWithoutAtInUserNameField() {
-      //  Log.info("Checking inability lodin without @ in email field");
-        try {
-            loginPage
-                    .fillEmailField("")
-                    .fillPasswordField(PASSWORD)
-                    .waitUntilAllertEmailIsLogIsLoaded()
-                    .clickOnLogin();
-            assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
-            assertTrue("The current page is changed", loginPage.isOnLoginPage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Reporter.log("Not logged in successful");
-    }
-    @Test(groups = {"smoke", "negative"})
-    public void LoginWithPasswordContains1Symbol() {
-        Log.info("Checking inability lodin with password contains 1 symbol");
-        try {
-            loginPage
-                    .fillEmailField(USER)
-                    .fillPasswordField("1")
-                    .waitUntilAllertPasswordIsLogIsLoaded()
-                    .clickOnLogin();
-            assertTrue("The Password is valid", loginPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed", loginPage.isOnLoginPage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Reporter.log("Not logged in successful");
-    }
-
-    @Test(groups = {"smoke", "positive"})
-    public void ForgotPassword() {
-        Log.info("Checking ability recreate password");
-        try {
-            loginPage
-                    .clickOnForgotPasswordLink();
-            resetYourPasswordPage.waitUntilResetPageIsLoaded();
-            assertTrue("The Reset Password Page doesn't open", resetYourPasswordPage.isOnResetPage());
-            resetYourPasswordPage.fillEmailField(USER);
-            resetYourPasswordPage.clickOnEmailMe();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Reporter.log("Password recreated successful");
-    }
-
-    @Test(groups = {"smoke", "negative"})
-    public void LoginWithEmptyFields() {
-        Log.info("Checking inability lodin with empty fields");
-        try {
-            loginPage
-                    .fillEmailField("")
-                    .fillPasswordField("")
-                    .waitUntilAllertEmailIsLogIsLoaded()
-                    .clickOnLogin();
-            assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
-            assertTrue("The Password is valid", loginPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed", loginPage.isOnLoginPage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Reporter.log("Not logged in successful");
-    }*/
-
 
 }

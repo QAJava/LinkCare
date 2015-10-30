@@ -32,7 +32,7 @@ public class AddPageTest {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.opennLoginPage(driver)
+            loginPage.openLoginPage(driver)
                     .waitUntilLoginPageIsLoaded()
                     .login("493Baranoski", "Mzj$6Vbb3I");
         } catch (Exception e) {

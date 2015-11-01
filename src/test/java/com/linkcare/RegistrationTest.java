@@ -6,6 +6,7 @@ import com.linkcare.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -69,12 +70,11 @@ public WebDriver driver;
                     .fillStreetField(street)
                     .fillHouseField(housenumber)
                     .fillCityField(city)
-                    .clickToSubmit();
+                    .clickOnSubmitButton();
 
-           mainPage.waitUntilMainPageIsLoaded();
-            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            mainPage.waitUntilMainPageIsLoaded();
+            Assert.assertTrue(mainPage.isOnMainPage(), "The Main Page doesn't open");
 
-            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,13 +95,11 @@ public WebDriver driver;
                     .fillStreetField(street)
                     .fillHouseField(housenumber)
                     .fillCityField(city)
-                    .clickToSubmit();
+                    .clickOnSubmitButton();
 
-            // mainPage.waitUntilMainPageIsLoaded();
-            assertTrue("The Main Page is opened", registrationPage.isOnRegistrationPage());
-            assertTrue("Alert message 'שם פרטי חובה' is not presented", registrationPage.alertMessageNotValidFirsrName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage(), "The Main Page is opened");
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirsrName(), "Alert message 'שם פרטי חובה' is not presented");
 
-            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }

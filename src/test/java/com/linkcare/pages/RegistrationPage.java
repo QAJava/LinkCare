@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by Iakov Volf.
+ * Created by Iakov Volf,Oleg
  */
 public class RegistrationPage extends Page {
 
@@ -97,7 +97,7 @@ public class RegistrationPage extends Page {
     }
 
 //Fill the fileds
-    //ToDo Add method fill passwored again, add another methods
+
     public RegistrationPage fillUsernameField (String username) {
     setElementText(usernameField, username);
     return this;
@@ -178,13 +178,15 @@ selectValueInDropdown(selectclinicType,"2");
         return this;
     }
 
-//ToDo add click to cancel
-
-    public void clickToSubmit() {
+    public void clickOnSubmitButton() {
         clickElement(submitButton);
 
     }
 
+    public void clickOnCancelButton() {
+        clickElement(cancelButton);
+
+    }
 
 
 

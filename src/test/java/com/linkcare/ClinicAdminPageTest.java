@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import org.testng.Assert;
 /**
  * Created by Svetlana on 22.10.2015.
  */
@@ -71,7 +71,9 @@ public class ClinicAdminPageTest {
 		/*for (String winHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(winHandle);
 		}*/
-		driver.switchTo().window("ChooseOrganization.aspx");
+		//driver.switchTo().window("ChooseOrganization.aspx");
+		winHandleBefore = driver.getWindowHandle();
+		driver.switchTo().window(winHandleBefore);
 				clinicAdminPage.clickToChoosePrivatDoc()
 					//.chooseOrganization("רופאים פרטיים")
 					.clickToSelectOrg();

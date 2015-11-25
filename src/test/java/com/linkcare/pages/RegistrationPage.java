@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Iakov Volf,Oleg
@@ -39,7 +40,7 @@ public class RegistrationPage extends Page {
 	@FindBy(id = "ctl00_MainContent_RegisterUser_CreateUserStepContainer_birthdayTxt_dateInput")
 	 WebElement birthDateField ;
 
-	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_ContactCellTxt")
+	@FindBy(id = "ctl00_MainContent_RegisterUser_CreateUserStepContainer_ContactCellTxt")
 	 WebElement mobilePhoneField;
 
 	@FindBy(id = "MainContent_RegisterUser_CreateUserStepContainer_AddressTxt")
@@ -102,7 +103,9 @@ public class RegistrationPage extends Page {
     setElementText(usernameField, username);
     return this;
 }
-    public RegistrationPage fillEmailField(String email) {
+    public RegistrationPage fillEmailField() {
+        int rand =  ThreadLocalRandom.current().nextInt(0, 10000 + 1);
+        String email = "doctor"+rand+"yopmail.com";
         setElementText(emailField, email);
         return this;
     }
@@ -131,7 +134,8 @@ public class RegistrationPage extends Page {
         return this;
     }
 
-    public RegistrationPage fillIdField(String id) {
+    public RegistrationPage fillIdField() {
+        String id = createId();
         setElementText(teudatField, id);
         //   Log.info("entering last name from the list: " + lastName + " ");
         return this;
@@ -139,6 +143,12 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage fillStreetField(String street) {
         setElementText(streetNameField, street);
+        //   Log.info("entering last name from the list: " + lastName + " ");
+        return this;
+    }
+
+    public RegistrationPage fillMobile (String street) {
+        setElementText(mobilePhoneField, street);
         //   Log.info("entering last name from the list: " + lastName + " ");
         return this;
     }
